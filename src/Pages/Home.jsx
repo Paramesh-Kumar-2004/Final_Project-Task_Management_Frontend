@@ -4,9 +4,10 @@ import SearchBar from '../Components/SearchBar'
 import Cards from '../Components/Cards'
 
 
+
 const Home = () => {
 
-    const { allCount, archiveCount, pinnedCount, deleteCount, filter, setFilter } = useContext(Store)
+    const { filter, setFilter } = useContext(Store)
 
     function HandleFilter(data) {
         try {
@@ -33,22 +34,12 @@ const Home = () => {
                     <div
                         onClick={() => HandleFilter("all")}
                         className={filter === "all" ? 'cursor-pointer font-bold bg-green-600 p-1 rounded-sm' : "cursor-pointer font-bold"}
-                    >All ({allCount})</div>
+                    >Task</div>
 
                     <div
-                        onClick={() => HandleFilter("pin")}
+                        onClick={() => HandleFilter("collaboration")}
                         className={filter === "pin" ? 'cursor-pointer font-bold bg-green-600 p-1 rounded-sm' : "cursor-pointer font-bold"}
-                    >Pinned ({pinnedCount})</div>
-
-                    <div
-                        onClick={() => HandleFilter("archive")}
-                        className={filter === "archive" ? 'cursor-pointer font-bold bg-green-600 p-1 rounded-sm' : "cursor-pointer font-bold"}
-                    >Archive ({archiveCount})</div>
-
-                    <div
-                        onClick={() => HandleFilter("trash")}
-                        className={filter === "trash" ? 'cursor-pointer font-bold bg-green-600 p-1 rounded-sm' : "cursor-pointer font-bold"}
-                    >Deleted ({deleteCount})</div>
+                    >Collaborations</div>
 
                 </div>
 
