@@ -5,6 +5,7 @@ import ContextAPI from './Components/ContextAPI'
 import CreateTasks from './Pages/CreateTasks'
 import EditTask from './Pages/EditTask'
 import Sidebar from './Components/Sidebar'
+import Tasks from './Pages/Tasks'
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
             <Route path='/' element={<Home />} />
             <Route path='/createTasks' element={<CreateTasks />} />
             <Route path='/edit-task/:id' element={<EditTask />} />
+            <Route path='/taks' element={<Tasks />} />
           </Routes>
         </HashRouter>
 
