@@ -55,23 +55,31 @@ const Cards = () => {
                     <table className="w-full mx-5">
                         <thead className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl w-full p-6 text-start transition-transform">
                             <tr>
-                                <th className="p-2">Title</th>
-                                <th className="p-2">Description</th>
-                                <th className="p-2">Priority</th>
-                                <th className="p-2">Deadline</th>
-                                {/* <th className="p-2">Add Collaboration</th> */}
-                                <th className="p-2" colSpan={23}>Actions</th>
+                                <th className="p-4">Task</th>
+                                <th className="p-4">Priority</th>
+                                <th className="p-4">Deadline</th>
+                                <th className="p-4">Details</th>
+                                <th className="p-4" colSpan={3}>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="bg-[#0f4c7546] text-center transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)]">
-                                <td className="p-2">title</td>
-                                <td className="p-2">description</td>
-                                <td className="p-2">priority</td>
-                                <td className="p-2">deadline</td>
-                                <td className="p-2"> <button>Add Collaboration</button> </td>
-                                <td className="p-2"> <button>Edit</button> </td>
-                                <td className="p-2"> <button>Delete</button> </td>
+                            <tr className="bg-[#0f4c7546] text-center transition-transform duration-300 ease-in-out hover:shadow-[inset_0_0_14px_rgba(71,166,230,1)]">
+                                <td className="p-3">title</td>
+                                <td className="p-3">priority</td>
+                                <td className="p-3">deadline</td>
+                                <td className="p-3">
+                                    <button>View Task</button>
+                                </td>
+                                {/* <td className="p-3">
+                                    <button>Add Collaboration</button>
+                                </td> */}
+                                {/* <td className="p-3">
+                                    <button>Add Collaboration</button>
+                                </td> */}
+                                <td className="p-3">
+                                    <button className="px-4 py-1.5 font-semibold rounded-md text-green-600 hover:bg-green-800 hover:text-white transition-colors duration-300 cursor-pointer">Edit</button>
+                                </td>
+                                <td className="p-3"> <button>Delete</button> </td>
                             </tr>
                         </tbody>
                     </table>
