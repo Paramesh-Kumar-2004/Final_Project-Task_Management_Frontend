@@ -11,17 +11,19 @@ import Sidebar from './Components/Sidebar'
 const App = () => {
 
   return (
-    <ContextAPI >
+    <>
+      <ContextAPI >
 
-      <HashRouter>
-        <Routes>
-          <Route path='/' element={<Sidebar />} />
-          <Route path='/createTasks' element={<CreateTasks />} />
-          <Route path='/edit-task/:id' element={<EditTask />} />
-        </Routes>
-      </HashRouter>
+        <HashRouter>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/createTasks' element={<CreateTasks />} />
+            <Route path='/edit-task/:id' element={<EditTask />} />
+          </Routes>
+        </HashRouter>
 
-    </ContextAPI>
+      </ContextAPI>
+    </>
   )
 }
 

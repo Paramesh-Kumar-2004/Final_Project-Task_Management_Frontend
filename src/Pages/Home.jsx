@@ -2,16 +2,18 @@ import React, { useContext } from 'react'
 import { Store } from '../Components/ContextAPI'
 import SearchBar from '../Components/SearchBar'
 import Cards from '../Components/Cards'
+import Sidebar from '../Components/Sidebar'
 
 
 
 const Home = () => {
 
     return (
-        <>
-            <div className="bg-[#1B262C] text-white min-h-screen font-[Poppins,sans-serif">
+        <div className='flex'>
+            <Sidebar />
+            <div className="bg-[#1B262C] text-white min-h-screen font-[Poppins,sans-serif w-full">
 
-                <div className='py-6 pl-2'>
+                <div className='py-6 pl-0'>
                     <h1 className='text-sky-400 font-bold text-3xl text-center'>My Tasks</h1>
                 </div>
 
@@ -29,7 +31,7 @@ const Home = () => {
                 <Cards />
 
             </div >
-        </>
+        </div>
     )
 }
 
