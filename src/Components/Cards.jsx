@@ -50,7 +50,31 @@ const Cards = () => {
         <>
 
             <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif]">
-                <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif]">
+                <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif] w-full">
+
+                    <table className="w-full mx-5">
+                        <thead className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl w-full p-6 text-start transition-transform">
+                            <tr>
+                                <th className="p-2">Title</th>
+                                <th className="p-2">Description</th>
+                                <th className="p-2">Priority</th>
+                                <th className="p-2">Deadline</th>
+                                {/* <th className="p-2">Add Collaboration</th> */}
+                                <th className="p-2" colSpan={23}>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="bg-[#0f4c7546] text-center transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)]">
+                                <td className="p-2">title</td>
+                                <td className="p-2">description</td>
+                                <td className="p-2">priority</td>
+                                <td className="p-2">deadline</td>
+                                <td className="p-2"> <button>Add Collaboration</button> </td>
+                                <td className="p-2"> <button>Edit</button> </td>
+                                <td className="p-2"> <button>Delete</button> </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                     {task.length > 0 ? (
                         task.map((ele) => {
