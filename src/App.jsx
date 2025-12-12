@@ -6,6 +6,7 @@ import CreateTasks from './Pages/CreateTasks'
 import EditTask from './Pages/EditTask'
 import Sidebar from './Components/Sidebar'
 import Tasks from './Pages/Tasks'
+import Collaborations from './Pages/Collaborations'
 
 
 
@@ -21,6 +22,7 @@ const App = () => {
             <Route path='/createTasks' element={<CreateTasks />} />
             <Route path='/edit-task/:id' element={<EditTask />} />
             <Route path='/taks' element={<Tasks />} />
+            <Route path='/collaborations' element={<Collaborations />} />
           </Routes>
         </HashRouter>
 
