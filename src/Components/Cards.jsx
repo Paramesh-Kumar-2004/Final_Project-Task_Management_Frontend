@@ -68,7 +68,7 @@ const Cards = () => {
                                 <td className="p-3">priority</td>
                                 <td className="p-3">deadline</td>
                                 <td className="p-3">
-                                    <button>View Task</button>
+                                    <button>View Details</button>
                                 </td>
                                 {/* <td className="p-3">
                                     <button>Add Collaboration</button>
