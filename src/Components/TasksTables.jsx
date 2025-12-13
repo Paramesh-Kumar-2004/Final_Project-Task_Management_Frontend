@@ -29,11 +29,17 @@ const TasksTables = () => {
         }
     }
 
-    const HandleDelete = (id) => {
+    const HandleDelete = async (id) => {
         try {
-            console.log("Delete : ", id)
+            setIsLoading(true)
+            const response = await api.delete(`task/deletetask/${id}`)
+            setDeleteData(response.data)
+            console.log(response)
         } catch (error) {
             console.log(error)
+        }
+        finally {
+            setIsLoading(false)
         }
     }
 
@@ -76,12 +82,17 @@ const TasksTables = () => {
                                             <td className="p-3">{item.deadline}</td>
                                             <td className="p-3">{item.status}</td>
                                             <td className="p-3">
-                                                <button>View More</button>
+                                                <button className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer text-amber-500 hover:bg-yellow-500 hover:text-white">View More</button>
                                             </td>
                                             <td className="p-3">
                                                 <button className="px-4 py-1.5 font-semibold rounded-md text-green-600 hover:bg-green-800 hover:text-white transition-colors duration-300 cursor-pointer">Edit</button>
                                             </td>
-                                            <td className="p-3"> <button>Delete</button> </td>
+                                            <td className="p-3">
+                                                <button
+                                                    onClick={() => HandleDelete(item._id)}
+                                                    className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer text-red-600 hover:bg-red-600 hover:text-white"
+                                                >Delete</button>
+                                            </td>
                                         </tr>
                                     )
                                 })
