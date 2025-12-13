@@ -8,7 +8,7 @@ const Sidebar = () => {
     const navigate = useNavigate()
 
     return (
-        <nav className='bg-sky-900 min-h-screen min-w-36 w-fit flex flex-col justify-evenly py-4 items-center text-white'>
+        <nav className='bg-[#06344d] min-h-screen min-w-36 w-fit flex flex-col justify-evenly py-4 items-center text-white'>
             <div>
                 {/* <img src={testIMG} alt="img" width={50} /> */}
                 <h1 className='text-center'>VP</h1>

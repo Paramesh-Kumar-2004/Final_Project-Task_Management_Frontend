@@ -49,6 +49,7 @@ const TasksTables = () => {
                                 <th className="p-4">Task</th>
                                 <th className="p-4">Priority</th>
                                 <th className="p-4">Deadline</th>
+                                <th className="p-4">Status</th>
                                 <th className="p-4">Details</th>
                                 <th className="p-4" colSpan={3}>Actions</th>
                             </tr>
@@ -62,6 +63,7 @@ const TasksTables = () => {
                                             <td className="p-3">{item.title}</td>
                                             <td className="p-3">{item.priority}</td>
                                             <td className="p-3">{item.deadline}</td>
+                                            <td className="p-3">{item.status}</td>
                                             <td className="p-3">
                                                 <button>View Details</button>
                                             </td>
@@ -76,7 +78,7 @@ const TasksTables = () => {
                                 <tr>
                                     <td
                                         colSpan={5}
-                                        className="py-4 font-extrabold text-red-700 bg-[#0f4c7546] border-2 border-sky-600 text-center transition-transform duration-300 ease-in-out"
+                                        className="py-4 font-extrabold text-sky-500 bg-[#0f4c7546] border-2 border-sky-600 text-center transition-transform duration-300 ease-in-out"
                                     >No Data Found</td>
                                 </tr>
                             )}

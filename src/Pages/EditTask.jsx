@@ -5,56 +5,23 @@ import { Store } from "../Components/ContextAPI";
 const EditTask = () => {
     const { task, setTask } = useContext(Store);
     const navigate = useNavigate();
-    const { id } = useParams();
 
     const [data, setData] = useState({
-        id: "",
-        title: "",
-        notes: "",
-        tags: [],
+        id: "1",
+        title: "1",
+        notes: "1",
+        tags: [1],
         type: "all",
     });
     const [tagsInput, setTagsInput] = useState("");
 
-    useEffect(() => {
-        const existingTask = task.find((t) => t.id === Number(id));
-        if (existingTask) {
-            setData(existingTask);
-            setTagsInput(existingTask.tags.join(", "));
-        } else {
-            navigate("/");
-        }
-    }, [id, task, navigate]);
-
     function HandleChange(e) {
-        const { name, value } = e.target;
 
-        if (name === "tags") {
-            setTagsInput(value);
-        } else {
-            setData({
-                ...data,
-                [name]: value,
-            });
-        }
     }
 
     function HandleSubmit(e) {
         e.preventDefault();
         try {
-            const tagArray = tagsInput
-                .split(",")
-                .map((tag) => tag.trim())
-                .filter((tag) => tag !== "");
-
-            const updatedTask = { ...data, tags: tagArray };
-
-            const updatedTasks = task.map((ele) =>
-                ele.id === Number(id) ? updatedTask : ele
-            );
-
-            setTask(updatedTasks);
-            localStorage.setItem("task", JSON.stringify(updatedTasks));
             navigate("/");
         } catch (error) {
             console.log(error);

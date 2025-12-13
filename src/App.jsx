@@ -22,7 +22,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Dashboard />} />
             <Route path='/createTasks' element={<CreateTasks />} />
-            <Route path='/edit-task/:id' element={<EditTask />} />
+            <Route path='/edit-task' element={<EditTask />} />
             <Route path='/taks' element={<Tasks />} />
             <Route path='/collaborations' element={<Collaborations />} />
             <Route path='/settings' element={<Settings />} />

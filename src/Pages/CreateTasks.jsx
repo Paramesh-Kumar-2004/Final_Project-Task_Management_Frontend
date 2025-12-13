@@ -10,12 +10,11 @@ const CreateTasks = () => {
     const { task, setTask } = useContext(Store)
 
     const [data, setData] = useState({
-        id: Date.now(),
         title: "",
-        notes: "",
-        tags: [],
-        type: "all"
+        description: "",
+        priority: "low"
     })
+    // category,deadline
     const [tagsInput, setTagsInput] = useState("");
 
 
@@ -23,46 +22,25 @@ const CreateTasks = () => {
 
     function HandleChange(e) {
         const { name, value } = e.target;
-
-        if (name === "tags") {
-            // const tagArray = value.split(",").map(tag => tag.trim()).filter(tag => tag !== "");
-            // setData({
-            //     ...data,
-            //     tags: tagArray
-            // });
-            setTagsInput(value);
-        } else {
-            setData({
-                ...data,
-                [name]: value
-            });
-        }
+        setData({
+            ...data,
+            [name]: value
+        });
     }
 
     function HandleSubmit(e) {
         e.preventDefault();
         try {
-            const tagArray = tagsInput
-                .split(",")
-                .map(tag => tag.trim())
-                .filter(tag => tag !== "");
-
-            const updatedTask = { ...data, tags: tagArray };
-            const updatedTasks = [...task, updatedTask];
-            setTask(updatedTasks);
-            localStorage.setItem("task", JSON.stringify(updatedTasks));
-            navigate("/");
+            // navigate("/");
         }
         catch (error) {
             console.log(error)
         }
         finally {
             setData({
-                id: Date.now(),
                 title: "",
-                notes: "",
-                tags: [],
-                type: "all"
+                description: "",
+                type: "low"
             });
         }
 
@@ -74,7 +52,7 @@ const CreateTasks = () => {
             <div className="flex justify-center items-center min-h-screen bg-[#1B262C] w-full">
                 <form
                     onSubmit={HandleSubmit}
-                    className="bg-[#0F4C75] shadow-lg rounded-xl p-8 w-full max-w-md space-y-6"
+                    className="bg-[#0d2c41] shadow-lg rounded-xl p-8 w-full max-w-md space-y-6"
                 >
                     <h2 className="text-2xl font-semibold text-center text-white mb-4">
                         Create New Task
@@ -104,14 +82,14 @@ const CreateTasks = () => {
                             htmlFor="notes"
                             className="block text-white font-medium mb-2"
                         >
-                            Notes
+                            Description
                         </label>
                         <textarea
                             id="notes"
                             placeholder="Write Your Notes Here..."
-                            name='notes'
+                            name='description'
                             onChange={HandleChange}
-                            value={data.notes}
+                            value={data.description}
                             required
                             rows="4"
                             className="w-full border text-sky-50 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
@@ -119,22 +97,13 @@ const CreateTasks = () => {
                     </div>
 
                     <div>
-                        <label
-                            htmlFor="tags"
-                            className="block text-white font-medium mb-2"
+                        <select name="priority"
+                            className="w-full border text-sky-50 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 bg-[#0d2c41]"
                         >
-                            Tags
-                        </label>
-                        <input
-                            type="text"
-                            id="tags"
-                            name='tags'
-                            onChange={HandleChange}
-                            value={tagsInput}
-                            required
-                            placeholder="e.g. Work, Study, Personal"
-                            className="w-full border text-sky-50 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
-                        />
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
                     </div>
 
                     <div className='flex gap-6'>
