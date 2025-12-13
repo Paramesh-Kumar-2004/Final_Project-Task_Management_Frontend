@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Car1 from "../assets/Car_Images_1.jpg"
 import { Link, useNavigate } from 'react-router'
 import { LoginUser } from '../API/api'
 import { toast } from 'react-toastify'
+import { Store } from '../Components/ContextAPI'
 
 
 
 const Login = () => {
 
     const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(false);
+    const { isLoading, setIsLoading } = useContext(Store)
+
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth") || false);
     const [role, setRole] = useState(localStorage.getItem("role") || "normal");
 
