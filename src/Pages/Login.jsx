@@ -34,7 +34,7 @@ const Login = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await API.post("/user/login", loginData)
+            const response = await API.post("/auth/login", loginData)
             toast.success(response.data.message, {
                 position: "top-center",
                 autoClose: 2000,
@@ -43,6 +43,7 @@ const Login = () => {
             localStorage.setItem("isAuth", response.data.isAuth);
             localStorage.setItem("role", response.data.role)
 
+            console.log(response.status)
             if (response.status === 200) {
                 navigate("/")
             }

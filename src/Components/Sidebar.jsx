@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -6,6 +6,11 @@ import { useNavigate } from 'react-router-dom'
 const Sidebar = () => {
 
     const navigate = useNavigate()
+    const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth") || false)
+
+    useEffect(() => {
+        navigate("/login")
+    }, [])
 
     return (
         <nav className='bg-[#06344d] min-h-screen min-w-36 w-fit flex flex-col justify-evenly py-4 items-center text-white'>
