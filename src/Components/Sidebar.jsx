@@ -9,7 +9,9 @@ const Sidebar = () => {
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth") || false)
 
     useEffect(() => {
-        navigate("/login")
+        if (!isAuth) {
+            navigate("/login")
+        }
     }, [])
 
     return (
