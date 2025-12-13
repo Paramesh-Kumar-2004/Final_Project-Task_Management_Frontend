@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Store } from "../Components/ContextAPI";
+import { Store } from "../../Components/ContextAPI";
 
 const EditTask = () => {
     const { task, setTask } = useContext(Store);

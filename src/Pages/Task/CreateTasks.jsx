@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Store } from '../Components/ContextAPI';
-import Sidebar from '../Components/Sidebar';
+import { Store } from '../../Components/ContextAPI';
+import Sidebar from '../../Components/Sidebar';
 
 
 

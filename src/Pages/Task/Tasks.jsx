@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from '../Components/Sidebar'
-import TasksTables from "../Components/TasksTables"
-import SearchBar from '../Components/SearchBar'
+import Sidebar from '../../Components/Sidebar'
+import TasksTables from "../../Components/TasksTables"
+import SearchBar from '../../Components/SearchBar'
 
 
 
