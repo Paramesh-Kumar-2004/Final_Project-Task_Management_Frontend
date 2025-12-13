@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Car1 from "../assets/Car_Images_1.jpg"
 import { Link, useNavigate } from 'react-router'
-import { LoginUser } from '../API/api'
 import { toast } from 'react-toastify'
+import Car1 from "../assets/Car_Images_1.jpg"
 import { Store } from '../Components/ContextAPI'
+import { API } from "../API/api"
 
 
 
