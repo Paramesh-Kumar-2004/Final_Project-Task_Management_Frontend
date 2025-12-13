@@ -17,11 +17,11 @@ const Sidebar = () => {
                 onClick={() => navigate("/")}
                 className='font-semibold text-lg p-2 cursor-pointer'>Dashboard</div>
             <div
-                onClick={() => navigate("/createTasks")}
-                className='font-semibold text-lg p-2 cursor-pointer'>Create Task</div>
-            <div
                 onClick={() => navigate("/taks")}
                 className='font-semibold text-lg p-2 cursor-pointer'>Tasks</div>
+            <div
+                onClick={() => navigate("/createTasks")}
+                className='font-semibold text-lg p-2 cursor-pointer'>Create Task</div>
             <div
                 onClick={() => navigate("/collaborations")}
                 className='font-semibold text-lg p-2 cursor-pointer'>Collaborations</div>

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Store } from '../Components/ContextAPI'
 import SearchBar from '../Components/SearchBar'
-import Cards from '../Components/Cards'
+import Cards from '../Components/TasksTables'
 import Sidebar from '../Components/Sidebar'
 
 

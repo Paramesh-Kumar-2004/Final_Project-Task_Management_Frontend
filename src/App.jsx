@@ -7,6 +7,8 @@ import EditTask from './Pages/EditTask'
 import Sidebar from './Components/Sidebar'
 import Tasks from './Pages/Tasks'
 import Collaborations from './Pages/Collaborations'
+import Settings from './Pages/Settings'
+import Dashboard from './Pages/Dashboard'
 
 
 
@@ -18,11 +20,12 @@ const App = () => {
 
         <HashRouter>
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Dashboard />} />
             <Route path='/createTasks' element={<CreateTasks />} />
             <Route path='/edit-task/:id' element={<EditTask />} />
             <Route path='/taks' element={<Tasks />} />
             <Route path='/collaborations' element={<Collaborations />} />
+            <Route path='/settings' element={<Settings />} />
           </Routes>
         </HashRouter>
 
