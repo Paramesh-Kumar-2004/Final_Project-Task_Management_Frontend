@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { Store } from "./ContextAPI";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { api } from "../API/api";
+import dayjs from "dayjs";
+import * as changecase from "change-case"
+import { Store } from "./ContextAPI";
+import { API } from "../API/api";
 
 
 
@@ -32,7 +34,7 @@ const TasksTables = () => {
     const HandleDelete = async (id) => {
         try {
             setIsLoading(true)
-            const response = await api.delete(`task/deletetask/${id}`)
+            const response = await API.delete(`task/deletetask/${id}`)
             setDeleteData(response.data)
             console.log(response)
         } catch (error) {
@@ -42,6 +44,7 @@ const TasksTables = () => {
             setIsLoading(false)
         }
     }
+
 
     if (isLoading) {
         return (
@@ -75,16 +78,33 @@ const TasksTables = () => {
                                 return (
                                     <tr key={item._id}
                                         className="bg-[#0f4c7546] border-2 border-sky-600 text-center transition-transform duration-300 ease-in-out hover:shadow-[inset_0_0_14px_rgba(71,166,230,1)]">
-                                        <td className="p-3">{item.title}</td>
-                                        <td className="p-3">{item.category}</td>
-                                        <td className="p-3">{item.priority}</td>
-                                        <td className="p-3">{item.deadline}</td>
-                                        <td className="p-3">{item.status}</td>
                                         <td className="p-3">
-                                            <button className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer text-amber-500 hover:bg-yellow-500 hover:text-white">View More</button>
+                                            {item.title}
                                         </td>
                                         <td className="p-3">
-                                            <button className="px-4 py-1.5 font-semibold rounded-md text-green-600 hover:bg-green-800 hover:text-white transition-colors duration-300 cursor-pointer">Edit</button>
+                                            {changecase.capitalCase(item.category)}
+                                        </td>
+                                        <td className="p-3">
+                                            {changecase.capitalCase(item.priority)}
+                                        </td>
+                                        <td className="p-3">
+                                            {dayjs(item.deadline).format("DD-MM-YYYY")}
+                                        </td>
+                                        <td className="p-3">
+                                            {changecase.capitalCase(item.status)}
+                                        </td>
+                                        <td className="p-3">
+                                            <button
+                                                className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer text-amber-500 hover:bg-yellow-500 hover:text-white"
+                                            >
+                                                View More
+                                            </button>
+                                        </td>
+                                        <td className="p-3">
+                                            <button className="px-4 py-1.5 font-semibold rounded-md text-green-600 hover:bg-green-800 hover:text-white transition-colors duration-300 cursor-pointer"
+                                            >
+                                                Edit
+                                            </button>
                                         </td>
                                         <td className="p-3">
                                             <button

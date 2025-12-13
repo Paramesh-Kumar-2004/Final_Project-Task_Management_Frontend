@@ -97,7 +97,14 @@ const CreateTasks = () => {
                     </div>
 
                     <div>
-                        <select name="priority"
+                        <label
+                            htmlFor="notes"
+                            className="block text-white font-medium mb-2"
+                        >
+                            Priority
+                        </label>
+                        <select
+                            name="priority"
                             className="w-full border text-sky-50 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 bg-[#0d2c41]"
                         >
                             <option value="low">Low</option>
