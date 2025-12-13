@@ -14,6 +14,7 @@ import Login from './Pages/Login'
 import ForgetPassword from './Pages/ForgetPassword'
 import ResetPassword from './Pages/ResetPassword'
 import NotFound from './Pages/NotFound'
+import TaskDetails from './Pages/Task/TaskDetails'
 
 
 
@@ -33,8 +34,9 @@ const App = () => {
             <Route path='/resetpassword/:id/:token' element={<ResetPassword />} />
             <Route path='/' element={<Dashboard />} />
             <Route path='/createTasks' element={<CreateTasks />} />
-            <Route path='/edit-task' element={<EditTask />} />
             <Route path='/tasks' element={<Tasks />} />
+            <Route path='/edit-task' element={<EditTask />} />
+            <Route path='/task/:id' element={<TaskDetails />} />
             <Route path='/collaborations' element={<Collaborations />} />
             <Route path='/settings' element={<Settings />} />
 

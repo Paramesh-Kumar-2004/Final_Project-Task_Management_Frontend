@@ -8,7 +8,7 @@ const NotFound = () => {
     return (
         <div className='flex'>
             <Sidebar />
-            <div className='w-full bg-[#1B262C] flex justify-center items-center text-white'>
+            <div className='w-full bg-[#1B262C] flex justify-center items-center text-white pl-40'>
                 Page Not Found
             </div>
         </div>

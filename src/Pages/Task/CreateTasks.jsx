@@ -49,7 +49,7 @@ const CreateTasks = () => {
     return (
         <div className='flex'>
             <Sidebar />
-            <div className="flex justify-center items-center min-h-screen bg-[#1B262C] w-full">
+            <div className="flex justify-center items-center min-h-screen bg-[#1B262C] w-full pl-40">
                 <form
                     onSubmit={HandleSubmit}
                     className="bg-[#0d2c41] shadow-lg rounded-xl p-8 w-full max-w-md space-y-6"

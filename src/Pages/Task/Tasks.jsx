@@ -8,9 +8,9 @@ import SearchBar from '../../Components/SearchBar'
 
 const Tasks = () => {
     return (
-        <div className='flex '>
+        <div className='flex'>
             <Sidebar />
-            <div className="bg-[#1B262C] text-white min-h-screen font-[Poppins,sans-serif w-full">
+            <div className="bg-[#1B262C] text-white min-h-screen font-[Poppins,sans-serif w-full pl-40">
 
                 <div className='py-6 pl-0'>
                     <h1 className='text-sky-400 font-bold text-3xl text-center'>My Tasks</h1>
