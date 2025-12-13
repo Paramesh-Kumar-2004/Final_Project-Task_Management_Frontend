@@ -14,6 +14,7 @@ import Login from './Pages/Login'
 import ForgetPassword from './Pages/ForgetPassword'
 import ResetPassword from './Pages/ResetPassword'
 import { ToastContainer } from 'react-toastify'
+import NotFound from './Pages/NotFound'
 
 
 
@@ -34,9 +35,11 @@ const App = () => {
             <Route path='/' element={<Dashboard />} />
             <Route path='/createTasks' element={<CreateTasks />} />
             <Route path='/edit-task' element={<EditTask />} />
-            <Route path='/taks' element={<Tasks />} />
+            <Route path='/tasks' element={<Tasks />} />
             <Route path='/collaborations' element={<Collaborations />} />
             <Route path='/settings' element={<Settings />} />
+
+            <Route path='*' element={<NotFound />} />
 
           </Routes>
         </HashRouter>
