@@ -7,6 +7,7 @@ export const Store = createContext()
 
 const ContextAPI = ({ children }) => {
 
+    const [isLoading, setIsLoading] = useState(false)
     const [task, setTask] = useState([]);
     const [search, setSearch] = useState("")
     const [filter, setFilter] = useState("all")
@@ -15,6 +16,7 @@ const ContextAPI = ({ children }) => {
 
     return (
         <Store.Provider value={{
+            isLoading, setIsLoading,
             task, setTask,
             search, setSearch,
             filter, setFilter,
