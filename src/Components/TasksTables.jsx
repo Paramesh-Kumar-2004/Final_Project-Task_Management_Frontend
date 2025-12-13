@@ -1,45 +1,35 @@
-import React, { useContext } from "react";
-import PinIMG from "../assets/pin.png"
-import EditIMG from "../assets/edit.png"
-import ArchiveIMG from "../assets/inbox.png"
-import DeleteIMG from "../assets/delete.png"
-import RestorePNG from "../assets/restore.png"
+import React, { useContext, useEffect } from "react";
 import { Store } from "./ContextAPI";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { api } from "../API/api";
 
 
 
 const TasksTables = () => {
 
     const navigate = useNavigate()
+    const { task, setTask, deleteData, setDeleteData } = useContext(Store)
 
-    const { task, setTask, filter, setFilter, search } = useContext(Store)
+    useEffect(() => {
+        fetchData()
+    }, [deleteData])
 
-    const HandleTypeChange = (id, e) => {
+
+    const fetchData = async () => {
         try {
-            const UpdateType = e.currentTarget.value
-            console.log(UpdateType)
-            const updatedTasks = task.map((ele) =>
-                ele.id === id ? { ...ele, type: UpdateType } : ele
-            );
-            setTask(updatedTasks);
-            // setTimeout(() => {
-            //     setFilter(UpdateType)
-            // }, 100)
-            localStorage.setItem("task", JSON.stringify(updatedTasks));
+            const response = await api.get("task/gettasks")
+            setTask(response.data.tasks)
         } catch (error) {
             console.log(error)
         }
     }
 
-
-    const HandleDeletePermanent = (id) => {
+    const HandleDelete = (id) => {
         try {
             console.log("Delete : ", id)
-            const updatedTasks = task.filter((ele) => ele.id !== id);
-            setTask(updatedTasks);
-            // setFilter("all")
-            localStorage.setItem("task", JSON.stringify(updatedTasks));
+
+
         } catch (error) {
             console.log(error)
         }
@@ -52,8 +42,9 @@ const TasksTables = () => {
             <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif]">
                 <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif] w-full">
 
+
                     <table className="w-full mx-5">
-                        <thead className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl w-full p-6 text-start transition-transform">
+                        <thead className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl w-full p-6 text-start transition-transform text-cyan-300">
                             <tr>
                                 <th className="p-4">Task</th>
                                 <th className="p-4">Priority</th>
@@ -63,104 +54,39 @@ const TasksTables = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="bg-[#0f4c7546] text-center transition-transform duration-300 ease-in-out hover:shadow-[inset_0_0_14px_rgba(71,166,230,1)]">
-                                <td className="p-3">title</td>
-                                <td className="p-3">priority</td>
-                                <td className="p-3">deadline</td>
-                                <td className="p-3">
-                                    <button>View Details</button>
-                                </td>
-                                {/* <td className="p-3">
-                                    <button>Add Collaboration</button>
-                                </td> */}
-                                {/* <td className="p-3">
-                                    <button>Add Collaboration</button>
-                                </td> */}
-                                <td className="p-3">
-                                    <button className="px-4 py-1.5 font-semibold rounded-md text-green-600 hover:bg-green-800 hover:text-white transition-colors duration-300 cursor-pointer">Edit</button>
-                                </td>
-                                <td className="p-3"> <button>Delete</button> </td>
-                            </tr>
+                            {task.length > 0 ? (
+                                task.map((item) => {
+                                    return (
+                                        <tr key={item._id}
+                                            className="bg-[#0f4c7546] border-2 border-sky-600 text-center transition-transform duration-300 ease-in-out hover:shadow-[inset_0_0_14px_rgba(71,166,230,1)]">
+                                            <td className="p-3">{item.title}</td>
+                                            <td className="p-3">{item.priority}</td>
+                                            <td className="p-3">{item.deadline}</td>
+                                            <td className="p-3">
+                                                <button>View Details</button>
+                                            </td>
+                                            <td className="p-3">
+                                                <button className="px-4 py-1.5 font-semibold rounded-md text-green-600 hover:bg-green-800 hover:text-white transition-colors duration-300 cursor-pointer">Edit</button>
+                                            </td>
+                                            <td className="p-3"> <button>Delete</button> </td>
+                                        </tr>
+                                    )
+                                })
+                            ) : (
+                                <tr>
+                                    <td
+                                        colSpan={5}
+                                        className="py-4 font-extrabold text-red-700 bg-[#0f4c7546] border-2 border-sky-600 text-center transition-transform duration-300 ease-in-out"
+                                    >No Data Found</td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
 
-                    {task.length > 0 ? (
-                        task.map((ele) => {
-                            <div
-                                className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl p-6 w-80 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)]"
-                                key={ele.id}
-                            >
-                                <h2 className="text-[#BBE1FA] mb-2 text-xl font-semibold">
-                                    {ele.title}
-                                </h2>
-
-                                <p className="text-[#BBE1FA] opacity-85 mb-5 leading-relaxed">
-                                    {ele.notes}
-                                </p>
-
-                                <div className=" flex items-center justify-between">
-
-                                    {ele.type !== "trash" && (
-                                        <div className="flex flex-wrap justify-around">
-                                            <div className="flex items-center justify-center transform transition-transform duration-300 hover:scale-110">
-                                                <button
-                                                    onClick={() => navigate(`/edit-task/${ele.id}`)}
-                                                    className={`flex items-center gap-1 py-1 text-sm font-semibold rounded-md text-green-600 hover:bg-green-800 hover:text-black transition-colors duration-300 cursor-pointer px-1`}
-                                                >
-                                                    <img src={EditIMG} alt="Edit" className="w-4 h-4" />
-                                                    Edit
-                                                </button>
-                                            </div>
-
-                                            <div className="flex items-center justify-center transform transition-transform duration-300 hover:scale-110 ">
-                                                <button
-                                                    value={ele.type === "trash" ? "all" : "trash"}
-                                                    onClick={(e) => HandleTypeChange(ele.id, e)}
-                                                    className={`flex items-center gap-1 py-1 text-sm font-semibold rounded-md text-red-500 hover:bg-red-800 hover:text-black transition-colors duration-300 cursor-pointer px-1`}
-                                                >
-                                                    <img src={DeleteIMG} alt="Archive" className="w-4 h-4" />
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {ele.type === "trash" && (
-                                        <div className="flex gap-4">
-
-                                            <div className="flex items-center justify-center transform transition-transform duration-300 hover:scale-110 ">
-                                                <button
-                                                    value="all"
-                                                    onClick={(e) => HandleTypeChange(ele.id, e)}
-                                                    className={`flex items-center gap-1 py-1 text-sm font-semibold rounded-md text-green-400 hover:bg-green-600 hover:text-black transition-colors duration-300 cursor-pointer`}
-                                                >
-                                                    <img src={RestorePNG} alt="Restore" className="w-4 h-4" />
-                                                    Restore
-                                                </button>
-                                            </div>
-
-                                            <div className="flex items-center justify-center transform transition-transform duration-300 hover:scale-110 ">
-                                                <button
-                                                    value="all"
-                                                    onClick={(e) => HandleDeletePermanent(ele.id)}
-                                                    className={`flex items-center gap-1 py-1 text-sm font-semibold rounded-md text-red-600 hover:bg-red-600 hover:text-black transition-colors duration-300 cursor-pointer`}
-                                                >
-                                                    <img src={DeleteIMG} alt="Archive" className="w-4 h-4" />
-                                                    Delete Permanent
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        })
-                    ) : (
-                        <div className="text-gray-400 text-xl font-semibold mt-10">No Data Found</div>
-                    )}
 
                 </div>
 
-            </div>
+            </div >
         </>
     );
 };
