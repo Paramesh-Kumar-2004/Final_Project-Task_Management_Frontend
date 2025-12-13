@@ -13,6 +13,7 @@ import Register from './Pages/Register'
 import Login from './Pages/Login'
 import ForgetPassword from './Pages/ForgetPassword'
 import ResetPassword from './Pages/ResetPassword'
+import { ToastContainer } from 'react-toastify'
 
 
 
@@ -23,6 +24,7 @@ const App = () => {
       <ContextAPI >
 
         <HashRouter>
+          <ToastContainer />
           <Routes>
 
             <Route path='/register' element={<Register />} />

@@ -34,7 +34,7 @@ const Login = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await LoginUser(loginData);
+            const response = await API.post("/user/login", loginData)
             toast.success(response.data.message, {
                 position: "top-center",
                 autoClose: 2000,

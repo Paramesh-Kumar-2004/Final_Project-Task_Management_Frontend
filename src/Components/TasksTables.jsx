@@ -21,7 +21,7 @@ const TasksTables = () => {
     const fetchData = async () => {
         try {
             setIsLoading(true)
-            const response = await api.get("task/gettasks")
+            const response = await API.get("/task/gettasks")
             setTask(response.data.tasks)
         } catch (error) {
             console.log(error)
