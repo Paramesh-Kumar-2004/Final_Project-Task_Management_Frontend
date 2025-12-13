@@ -28,7 +28,7 @@ const Register = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await RegisterUser(userData);
+            const response = await API.post("/user/register", userData);
 
             toast.success(response.data.message, {
                 position: "top-center",
