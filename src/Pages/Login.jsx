@@ -12,13 +12,14 @@ const Login = () => {
     const navigate = useNavigate();
     const { isLoading, setIsLoading } = useContext(Store)
 
+    const [viewPassword, setViewPassword] = useState(false);
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth") || false);
     const [role, setRole] = useState(localStorage.getItem("role") || "normal");
 
 
     const [loginData, setLoginData] = useState({
         email: "",
-        password: ""
+        password: "2004"
     });
 
 
@@ -43,7 +44,6 @@ const Login = () => {
             localStorage.setItem("isAuth", response.data.isAuth);
             localStorage.setItem("role", response.data.role)
 
-            console.log(response.status)
             if (response.status === 200) {
                 navigate("/")
             }
@@ -99,7 +99,7 @@ const Login = () => {
                             Password :
                         </label>
                         <input
-                            type="password"
+                            type={viewPassword ? "text" : "password"}
                             value={loginData.password}
                             name='password'
                             placeholder="Enter Your Password"
@@ -109,7 +109,9 @@ const Login = () => {
                         />
 
                         <p className="mt-1 text-right text-[#00E5FF] font-bold text-sm cursor-pointer transition text-shadow hover:text-sky-400">
-                            🤫 Hide Password
+                            <span onClick={() => setViewPassword(!viewPassword)}>
+                                {viewPassword ? "Hide Password" : "Show Password"}
+                            </span>
                         </p>
                     </div>
 
