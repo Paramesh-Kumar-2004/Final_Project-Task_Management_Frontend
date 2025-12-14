@@ -13,7 +13,7 @@ import Loader from '../../Components/Loader'
 const TaskDetails = () => {
 
     const navigate = useNavigate()
-    const { id } = useParams()
+    const { taskid } = useParams()
 
     const [showComments, setShowComments] = useState(false)
 
@@ -33,17 +33,17 @@ const TaskDetails = () => {
     const fetchSingleTask = async () => {
         try {
             setIsLoading(true)
-            const response = await API.get(`/task/getsingletask/${id}`)
+            const response = await API.get(`/task/getsingletask/${taskid}`)
             setTaskDetail(response.data.task)
             setCollaborations(response.data.collaborators)
             toast(response.data.message, {
                 position: "top-center",
-                autoClose: 1000
+                autoClose: 2000
             })
         } catch (error) {
-            toast.error(error.response.data.message, {
+            toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
-                autoClose: 1000
+                autoClose: 2000
             })
         }
         finally {
@@ -51,21 +51,39 @@ const TaskDetails = () => {
         }
     }
 
-    const fetchComments = async (id) => {
+    const fetchComments = async () => {
         try {
-            const response = await API.get(`/comment/getcomments/${id}`)
+            const response = await API.get(`/comment/getcomments/${taskid}`)
             setComments(response.data.comments)
             toast(response.data.message, {
                 position: "top-center",
-                autoClose: 1000
+                autoClose: 2000
             })
         } catch (error) {
-            toast.error(error.response.data.message, {
+            toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
-                autoClose: 1000
+                autoClose: 2000
             })
         } finally {
             setIsLoading(false)
+        }
+    }
+
+    const HandleDelete = async (commentId) => {
+        try {
+            const response = await API.delete(`/comment/deletecomment/${commentId}`)
+            toast.info(response.data.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        } finally {
+            setShowComments(true)
+            fetchComments(taskid)
         }
     }
 
@@ -183,7 +201,7 @@ const TaskDetails = () => {
                             onClick={() => {
                                 setShowComments(!showComments)
                                 if (!showComments) {
-                                    fetchComments(id)
+                                    fetchComments(taskid)
                                 }
                             }}
                             className='bg-sky-900 text-white font-semibold text-base border-2 border-sky-400 p-2 rounded-xl cursor-pointer'
@@ -203,7 +221,7 @@ const TaskDetails = () => {
                             comments.map((item) => {
                                 return (
                                     <div
-                                        className="bg-[#0f4c7546] min-w-72 w-80 h-56 border-2 border-[#3282B8] rounded-2xl p-6 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1"
+                                        className="bg-[#0f4c7546] min-w-72 w-80 h-60 border-2 border-[#3282B8] rounded-2xl p-6 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1"
                                         key={item._id}
                                     >
 
@@ -220,7 +238,12 @@ const TaskDetails = () => {
                                         </p>
 
                                         <div>
-                                            <button>Delete</button>
+                                            <button
+                                                className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer text-red-600 hover:bg-red-600 hover:text-white border-2 border-red-900"
+                                                onClick={() => HandleDelete(item._id)}
+                                            >
+                                                Delete
+                                            </button>
                                         </div>
 
                                     </div>

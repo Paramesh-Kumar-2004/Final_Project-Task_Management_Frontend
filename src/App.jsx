@@ -36,7 +36,7 @@ const App = () => {
             <Route path='/createTasks' element={<CreateTasks />} />
             <Route path='/tasks' element={<Tasks />} />
             <Route path='/edit-task' element={<EditTask />} />
-            <Route path='/task/:id' element={<TaskDetails />} />
+            <Route path='/task/:taskid' element={<TaskDetails />} />
             <Route path='/collaborations' element={<Collaborations />} />
             <Route path='/settings' element={<Settings />} />
 
