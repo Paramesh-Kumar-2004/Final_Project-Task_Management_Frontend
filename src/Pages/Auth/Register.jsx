@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { Link } from 'react-router'
-import Car3 from "../assets/Car_Images_3.jpg"
-import { API } from '../API/api'
+import Car3 from "../../assets/Car_Images_3.jpg"
+import { API } from '../../API/api'
 
 
 
