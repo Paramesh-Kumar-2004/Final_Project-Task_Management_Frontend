@@ -36,10 +36,10 @@ const TaskDetails = () => {
             const response = await API.get(`/task/getsingletask/${taskid}`)
             setTaskDetail(response.data.task)
             setCollaborations(response.data.collaborators)
-            toast(response.data.message, {
-                position: "top-center",
-                autoClose: 2000
-            })
+            // toast(response.data.message, {
+            //     position: "top-center",
+            //     autoClose: 2000
+            // })
         } catch (error) {
             toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
@@ -55,10 +55,10 @@ const TaskDetails = () => {
         try {
             const response = await API.get(`/comment/getcomments/${taskid}`)
             setComments(response.data.comments)
-            toast(response.data.message, {
-                position: "top-center",
-                autoClose: 2000
-            })
+            // toast(response.data.message, {
+            //     position: "top-center",
+            //     autoClose: 2000
+            // })
         } catch (error) {
             toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
@@ -239,7 +239,7 @@ const TaskDetails = () => {
 
                                         <div>
                                             <button
-                                                className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer text-red-600 hover:bg-red-600 hover:text-white border-2 border-red-900"
+                                                className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer hover:bg-red-600 text-white border-2 border-red-800"
                                                 onClick={() => HandleDelete(item._id)}
                                             >
                                                 Delete
