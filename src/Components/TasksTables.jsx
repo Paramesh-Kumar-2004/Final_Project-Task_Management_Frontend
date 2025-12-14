@@ -5,6 +5,7 @@ import * as changecase from "change-case"
 import { Store } from "./ContextAPI";
 import { API } from "../API/api";
 import { toast } from "react-toastify";
+import Loader from "./Loader";
 
 
 
@@ -56,9 +57,7 @@ const TasksTables = () => {
 
     if (isLoading) {
         return (
-            <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif]">
-                Loading...
-            </div>
+            <Loader />
         )
     }
 
@@ -104,6 +103,7 @@ const TasksTables = () => {
                                         <td className="p-3">
                                             <button
                                                 className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer text-amber-500 hover:bg-yellow-500 hover:text-white"
+                                                onClick={() => navigate(`/task/${item._id}`)}
                                             >
                                                 View More
                                             </button>

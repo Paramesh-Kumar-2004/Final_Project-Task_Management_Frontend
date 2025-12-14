@@ -17,6 +17,7 @@
     "axios": "^1.13.2",
     "change-case": "^5.4.4",
     "dayjs": "^1.11.19",
+    "flowbite-react": "^0.12.13",
     "gh-pages": "^6.3.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Sidebar from '../../Components/Sidebar'
+import { Store } from '../../Components/ContextAPI'
+
+
 
 const TaskDetails = () => {
+
+    const {
+        isLoading, setIsLoading,
+        task, setTask,
+        collaborations, setCollaborations,
+        comments, setComments,
+    } = useContext(Store)
+
+    
     return (
         <div className='flex'>
             <Sidebar />

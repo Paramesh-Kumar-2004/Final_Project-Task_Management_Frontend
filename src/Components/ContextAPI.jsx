@@ -9,6 +9,8 @@ const ContextAPI = ({ children }) => {
 
     const [isLoading, setIsLoading] = useState(false)
     const [task, setTask] = useState([]);
+    const [collaborations, setCollaborations] = useState([])
+    const [comments, setComments] = useState([])
     const [search, setSearch] = useState("")
     const [filter, setFilter] = useState("all")
     const [deleteData, setDeleteData] = useState([])
@@ -18,6 +20,8 @@ const ContextAPI = ({ children }) => {
         <Store.Provider value={{
             isLoading, setIsLoading,
             task, setTask,
+            collaborations, setCollaborations,
+            comments, setComments,
             search, setSearch,
             filter, setFilter,
             deleteData, setDeleteData,
