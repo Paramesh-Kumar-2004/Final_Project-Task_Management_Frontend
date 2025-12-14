@@ -110,7 +110,7 @@ const EditTask = () => {
                         <button
                             type="button"
                             className="w-full bg-red-600 text-white font-semibold py-2 rounded-md hover:bg-red-700 transition-all duration-300 cursor-pointer"
-                            onClick={() => navigate("/tasks")}
+                            onClick={() => navigate(-1)}
                         >
                             Cancel
                         </button>
