@@ -31,7 +31,9 @@ const TaskDetails = () => {
 
     useEffect(() => {
         fetchSingleTask()
+        fetchComments()
     }, [refetch])
+
 
     const fetchSingleTask = async () => {
         try {
@@ -201,27 +203,16 @@ const TaskDetails = () => {
 
                     <div className='flex items-center justify-end gap-2 pb-6 pr-3'>
                         <button
-                            onClick={() => {
-                                setShowComments(!showComments)
-                                if (!showComments) {
-                                    fetchComments(taskid)
-                                }
-                            }}
-                            className='bg-sky-900 text-white font-semibold text-base border-2 border-sky-400 p-2 rounded-xl cursor-pointer'
-                        >
-                            {!showComments ? "Show Comments" : "Hide Comments"}
-                        </button>
-
-                        <button
                             onClick={() => setShowAddComment(!showAddComment)}
-                            className='bg-sky-900 text-green-400 font-semibold text-base border-2 border-sky-400 p-2 rounded-xl cursor-pointer'
+                            // className='bg-sky-900 text-green-400 font-semibold text-base border-2 border-sky-400 p-2 rounded-xl cursor-pointer'
+                            className='bg-sky-900 text-white font-semibold text-base border-2 border-sky-400 p-2 rounded-xl cursor-pointer'
                         >
                             Add Comment
                         </button>
                     </div>
 
                     <div className='flex flex-wrap justify-evenly items-center gap-10 pr-3 w-full'>
-                        {comments.length > 0 && showComments ? (
+                        {comments.length > 0 ? (
                             comments.map((item) => {
                                 return (
                                     <div
@@ -261,8 +252,11 @@ const TaskDetails = () => {
                     {showAddComment && (
                         <AddComment
                             taskId={taskid}
-                            setRefetch={setRefetch}
-                            onClose={() => setShowAddComment(false)}
+                            onClose={() => {
+                                setShowAddComment(false)
+                                fetchComments(taskid)
+                            }
+                            }
                         />
                     )}
 
