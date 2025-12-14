@@ -8,12 +8,6 @@ const Sidebar = () => {
     const navigate = useNavigate()
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth") || false)
 
-    useEffect(() => {
-        if (!isAuth) {
-            navigate("/login")
-        }
-    }, [])
-
     return (
         <nav className='bg-[#06344d] h-screen min-w-36 w-fit flex flex-col justify-evenly py-4 items-center text-white fixed'>
             <div>

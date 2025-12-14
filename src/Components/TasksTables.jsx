@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import * as changecase from "change-case"
 import { Store } from "./ContextAPI";
 import { API } from "../API/api";
+import { toast } from "react-toastify";
 
 
 
@@ -22,8 +23,16 @@ const TasksTables = () => {
             setIsLoading(true)
             const response = await API.get("/task/gettasks")
             setTask(response.data.tasks)
+            toast(response.data.message, {
+                position: "top-center",
+                autoClose: 1000
+            })
         } catch (error) {
-            console.log(error)
+            console.log(error.response.data.message)
+            toast.error(error.response.data.message, {
+                position: "top-center",
+                autoClose: 1000
+            })
         }
         finally {
             setIsLoading(false)
