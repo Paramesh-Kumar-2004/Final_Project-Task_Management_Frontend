@@ -121,7 +121,7 @@ const TaskDetails = () => {
                                             Deadline : {dayjs(item.deadline).format("DD:MM:YYYY")}
                                         </p>
 
-                                        <button className="px-4 py-1.5 font-semibold rounded-md text-green-600 hover:bg-green-800 hover:text-white transition-colors duration-300 cursor-pointer"
+                                        <button className="px-4 py-1.5 font-semibold rounded-md text-white bg-green-800 hover:scale-110 transition-all duration-300 cursor-pointer"
                                             onClick={() => navigate("/edit-task")}
                                         >
                                             Edit
@@ -166,19 +166,19 @@ const TaskDetails = () => {
                                     );
                                 })
                             ) : (
-                                <div className="text-gray-400 text-xl font-semibold mt-10">No Collaborators Found</div>
+                                <div className="text-gray-400 text-xl font-semibold">No Collaborators Found</div>
                             )}
                         </div>
                     </div>
                 </div>
 
                 {/* Comments */}
-                <div className=' w-full'>
-                    <div className='pt-6'>
+                <div className='pt-12 w-full'>
+                    <div>
                         <h1 className='text-sky-50 font-semibold text-2xl text-center'>Comments</h1>
                     </div>
 
-                    <div className='flex items-center justify-end pb-6 pr-3'>
+                    <div className='flex items-center justify-end gap-2 pb-6 pr-3'>
                         <button
                             onClick={() => {
                                 setShowComments(!showComments)
@@ -189,6 +189,12 @@ const TaskDetails = () => {
                             className='bg-sky-900 text-white font-semibold text-base border-2 border-sky-400 p-2 rounded-xl cursor-pointer'
                         >
                             {!showComments ? "Show Comments" : "Hide Comments"}
+                        </button>
+
+                        <button
+                            className='bg-sky-900 text-green-400 font-semibold text-base border-2 border-sky-400 p-2 rounded-xl cursor-pointer'
+                        >
+                            Add Comment
                         </button>
                     </div>
 
@@ -202,7 +208,7 @@ const TaskDetails = () => {
                                     >
 
                                         <p className="text-white font-semibold mb-5 leading-relaxed break-all">
-                                            Email : {item.user.userName}
+                                            Name : {item.user.userName}
                                         </p>
 
                                         <p className="text-white font-semibold mb-5 leading-relaxed break-all">
