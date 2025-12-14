@@ -7,6 +7,7 @@ import Sidebar from '../../Components/Sidebar'
 import { Store } from '../../Components/ContextAPI'
 import { API } from '../../API/api'
 import Loader from '../../Components/Loader'
+import AddComment from '../../Components/AddComment'
 
 
 
@@ -16,6 +17,8 @@ const TaskDetails = () => {
     const { taskid } = useParams()
 
     const [showComments, setShowComments] = useState(false)
+    const [showAddComment, setShowAddComment] = useState(false);
+
 
     const {
         isLoading, setIsLoading,
@@ -210,6 +213,7 @@ const TaskDetails = () => {
                         </button>
 
                         <button
+                            onClick={() => setShowAddComment(!showAddComment)}
                             className='bg-sky-900 text-green-400 font-semibold text-base border-2 border-sky-400 p-2 rounded-xl cursor-pointer'
                         >
                             Add Comment
@@ -254,6 +258,13 @@ const TaskDetails = () => {
                         )}
                     </div>
 
+                    {showAddComment && (
+                        <AddComment
+                            taskId={taskid}
+                            setRefetch={setRefetch}
+                            onClose={() => setShowAddComment(false)}
+                        />
+                    )}
 
                 </div>
 
