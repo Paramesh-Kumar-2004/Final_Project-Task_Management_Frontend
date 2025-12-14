@@ -42,6 +42,9 @@ const TaskDetails = () => {
                 autoClose: 1000
             })
         }
+        finally {
+            setIsLoading(false)
+        }
     }
 
 
@@ -104,7 +107,7 @@ const TaskDetails = () => {
                             className='text-center'
                         >Collaborations</div>
                         <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif] pt-4 pr-3">
-                            {collaborations.length !== 0 ? (
+                            {collaborations.length > 0 ? (
                                 collaborations.map((item) => {
                                     return (
                                         <div
@@ -112,30 +115,15 @@ const TaskDetails = () => {
                                             key={item._id}
                                         >
                                             <h2 className="text-white font-semibold mb-4 text-xl">
-                                                Task : {changecase.capitalCase(item.title)}
+                                                User : {item.collabuser.userName}
                                             </h2>
 
-                                            <p className="text-white font-semibold opacity-85 mb-5 leading-relaxed">
-                                                Description : {item.description}
+                                            <p className="text-white font-semibold opacity-85 mb-5 leading-relaxed break-all">
+                                                Email : {item.collabuser.email}
                                             </p>
 
                                             <p className="text-white font-semibold opacity-85 mb-5 leading-relaxed">
-                                                Category : {changecase.capitalCase(item.category)}
-                                            </p>
-
-                                            <p className="text-white font-semibold opacity-85 mb-5 leading-relaxed">
-                                                Status : {changecase.capitalCase(item.status)}
-                                            </p>
-
-                                            <p className="text-white font-semibold opacity-85 mb-5 leading-relaxed">
-                                                Priority :
-                                                <span className={`${item.priority == "medium" ? "text-blue-600" : item.priority == "high" ? "text-red-600" : "text-yellow-300"}`}>
-                                                    {" " + changecase.capitalCase(item.priority)}
-                                                </span>
-                                            </p>
-
-                                            <p className="text-white font-semibold opacity-85 mb-5 leading-relaxed">
-                                                Deadline : {dayjs(item.deadline).format("DD:MM:YYYY")}
+                                                Access : {item.control}
                                             </p>
 
                                         </div>
