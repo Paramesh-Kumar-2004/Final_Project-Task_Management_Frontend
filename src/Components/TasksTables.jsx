@@ -71,7 +71,7 @@ const TasksTables = () => {
             <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif]">
 
                 <table className="w-full min-w-xs mx-5">
-                    <thead className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl w-full p-6 text-start transition-transform text-cyan-300">
+                    <thead className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl w-full p-6 text-start transition-transform text-emerald-300 text-lg">
                         <tr>
                             <th className="p-4">Task</th>
                             <th className="p-4">Category</th>
@@ -82,7 +82,7 @@ const TasksTables = () => {
                             <th className="p-4" colSpan={3}>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-white text-base">
                         {task.length > 0 ? (
                             task.map((item) => {
                                 return (

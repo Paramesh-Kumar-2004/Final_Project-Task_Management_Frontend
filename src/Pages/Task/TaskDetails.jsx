@@ -17,10 +17,8 @@ const TaskDetails = () => {
     const navigate = useNavigate()
     const { taskid } = useParams()
 
-    const [showComments, setShowComments] = useState(false)
     const [showAddComment, setShowAddComment] = useState(false);
     const [showAddCollab, setShowAddCollab] = useState(false);
-
 
     const {
         isLoading, setIsLoading,
@@ -312,7 +310,9 @@ const TaskDetails = () => {
                                 )
                             })
                         ) : (
-                            <div className="text-gray-400 text-xl font-semibold mt-10">{!showComments ? "" : "No Comments Found"}</div>
+                            <div className="text-gray-400 text-xl font-semibold mt-10">
+                                No Comments Found
+                            </div>
                         )}
                     </div>
 

@@ -18,19 +18,18 @@ const SearchBar = () => {
         <>
             <div className='w-full flex gap-3 justify-around'>
 
+                {/* <div
+                    className='bg-blue-400 p-2 rounded-lg font-bold border-2 border-sky-900 text-pink-700 cursor-pointer'
+                >
+                    Search
+                </div > */}
+
                 <input
-                    className='border-2 border-sky-400 text-white rounded-md p-1 outline-none w-3/4'
+                    className='border-2 border-sky-400 text-white rounded-md p-2 outline-none w-4/5'
                     type="text"
                     placeholder='Search Tasks...'
                     onChange={(e) => { HandleSearch(e) }}
                 />
-
-                <button
-                    onClick={() => { navigate("/createTasks") }}
-                    className='bg-blue-400 p-2 rounded-lg font-bold border-2 border-sky-900 text-pink-700 cursor-pointer'
-                >
-                    Create Task
-                </button >
 
             </div>
         </>
