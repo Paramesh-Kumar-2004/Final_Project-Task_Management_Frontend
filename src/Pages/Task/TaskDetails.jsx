@@ -142,7 +142,7 @@ const TaskDetails = () => {
             <div className='w-full min-h-screen bg-[#1B262C] flex flex-col justify-between items-center text-white pl-40 py-3 pb-10'>
 
                 {/* Task */}
-                {/* <div className='w-full'>
+                <div className='w-full'>
                     <div className='py-6 pl-0'>
                         <h1 className='text-sky-50 font-bold text-3xl text-center'>Task Details</h1>
                     </div>
@@ -182,7 +182,7 @@ const TaskDetails = () => {
                                         </p>
 
                                         <button className="px-4 py-1.5 font-semibold rounded-md text-white bg-green-800 hover:scale-110 transition-all duration-300 cursor-pointer"
-                                            onClick={() => navigate("/edit-task")}
+                                            onClick={() => navigate(`/edit-task/${item._id}`)}
                                         >
                                             Edit
                                         </button>
@@ -194,7 +194,7 @@ const TaskDetails = () => {
                             <div className="text-gray-400 text-xl font-semibold mt-10">No Data Found</div>
                         )}
                     </div>
-                </div> */}
+                </div>
 
                 {/* Collaborations */}
                 <div className='w-full'>
@@ -283,7 +283,7 @@ const TaskDetails = () => {
                             comments.map((item) => {
                                 return (
                                     <div
-                                        className="bg-[#0f4c7546] min-w-72 w-80 h-60 border-2 border-[#3282B8] rounded-2xl p-6 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1"
+                                        className="bg-[#0f4c7546] min-w-72 w-80 h-44 border-2 border-[#3282B8] rounded-2xl p-6 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1"
                                         key={item._id}
                                     >
 
@@ -291,9 +291,9 @@ const TaskDetails = () => {
                                             Name : {item.user.userName}
                                         </p>
 
-                                        <p className="text-white font-semibold mb-5 leading-relaxed break-all">
+                                        {/* <p className="text-white font-semibold mb-5 leading-relaxed break-all">
                                             Email : {item.user.email}
-                                        </p>
+                                        </p> */}
 
                                         <p className="text-white font-semibold mb-5 leading-relaxed">
                                             Comment : {item.comment}

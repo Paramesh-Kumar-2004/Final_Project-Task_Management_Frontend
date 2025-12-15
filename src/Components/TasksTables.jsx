@@ -110,7 +110,7 @@ const TasksTables = () => {
                                         </td>
                                         <td className="p-3">
                                             <button className="px-4 py-1.5 font-semibold rounded-md text-green-600 hover:bg-green-800 hover:text-white transition-colors duration-300 cursor-pointer"
-                                                onClick={() => navigate("/edit-task")}
+                                                onClick={() => navigate(`/edit-task/${item._id}`)}
                                             >
                                                 Edit
                                             </button>
