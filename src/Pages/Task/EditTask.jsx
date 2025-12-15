@@ -53,6 +53,7 @@ const EditTask = () => {
                 position: "top-center",
                 autoClose: 2000
             })
+            navigate("/tasks")
 
         } catch (error) {
             toast.error(error.response?.data?.message || error.message, {
@@ -146,7 +147,11 @@ const EditTask = () => {
                         <input
                             type="date"
                             name="deadline"
-                            value={taskData.deadline}
+                            value={
+                                taskData.deadline
+                                    ? new Date(taskData.deadline).toISOString().split("T")[0]
+                                    : ""
+                            }
                             onChange={(e) => HandleChange(e)}
                             placeholder="User email"
                             className="w-full p-3 rounded-md border-2 border-sky-500 text-white text-lg outline-none"

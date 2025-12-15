@@ -24,15 +24,11 @@ const TasksTables = () => {
             setIsLoading(true)
             const response = await API.get("/task/gettasks")
             setTask(response.data.tasks)
-            toast(response.data.message, {
-                position: "top-center",
-                autoClose: 1000
-            })
         } catch (error) {
             console.log(error.response.data.message)
-            toast.error(error.response.data.message, {
+            toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
-                autoClose: 1000
+                autoClose: 2000
             })
         }
         finally {
@@ -45,9 +41,16 @@ const TasksTables = () => {
             setIsLoading(true)
             const response = await API.delete(`task/deletetask/${id}`)
             setDeleteData(response.data)
-            console.log(response)
+            // console.log(response)
+            toast(response.data.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
         } catch (error) {
-            console.log(error)
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
         }
         finally {
             setIsLoading(false)
