@@ -70,17 +70,17 @@ const EditTask = () => {
 
                 <form
                     onSubmit={HandleSubmit}
-                    className="bg-[#c517d402] border-2 border-gray-700 shadow-sm shadow-sky-400 rounded-xl p-8 w-full max-w-md space-y-6"
+                    className="bg-[#c517d402] border-2 border-gray-700 shadow-sm shadow-sky-400 rounded-xl px-8 py-4 w-full max-w-md space-y-6"
                 >
                     <h2 className="text-2xl font-semibold text-center text-white mb-4">
-                        Edit : {taskData.title}
+                        Edit : <span className="text-green-400">{taskData.title}</span>
                     </h2>
 
                     {/* Category - ["work", "personal", "prjects"] */}
                     <div>
                         <label
                             htmlFor="title"
-                            className="block text-white font-medium mb-2"
+                            className="block text-white font-medium text-xl mb-2"
                         >
                             Category
                         </label>
@@ -100,7 +100,7 @@ const EditTask = () => {
                     <div>
                         <label
                             htmlFor="title"
-                            className="block text-white font-medium mb-2"
+                            className="block text-white font-medium text-xl mb-2"
                         >
                             Status
                         </label>
@@ -120,7 +120,7 @@ const EditTask = () => {
                     <div>
                         <label
                             htmlFor="title"
-                            className="block text-white font-medium mb-2"
+                            className="block text-white font-medium text-xl mb-2"
                         >
                             Priority
                         </label>
@@ -140,7 +140,7 @@ const EditTask = () => {
                     <div>
                         <label
                             htmlFor="title"
-                            className="block text-white font-medium mb-2"
+                            className="block text-white font-medium text-xl mb-2"
                         >
                             Deadline
                         </label>
@@ -174,6 +174,7 @@ const EditTask = () => {
                             Cancel
                         </button>
                     </div>
+
                 </form>
             </div>
         </div>
