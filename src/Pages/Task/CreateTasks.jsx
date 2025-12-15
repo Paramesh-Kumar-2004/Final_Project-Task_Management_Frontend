@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../../Components/ContextAPI';
 import Sidebar from '../../Components/Sidebar';
@@ -9,6 +9,8 @@ import { toast } from 'react-toastify';
 
 const CreateTasks = () => {
 
+    const navigate = useNavigate()
+    const fileInputRef = useRef(null)
     const { task, setTask } = useContext(Store)
 
     const [taskData, setTaskData] = useState({
@@ -16,12 +18,9 @@ const CreateTasks = () => {
         description: "",
         category: "personal",
         priority: "low",
-        deadline: ""
+        deadline: "",
+        file: null
     });
-
-    const [tagsInput, setTagsInput] = useState("");
-    const navigate = useNavigate()
-
 
     function HandleChange(e) {
         const { name, value } = e.target;
@@ -34,7 +33,12 @@ const CreateTasks = () => {
     async function HandleSubmit(e) {
         e.preventDefault();
         try {
-            const response = await API.post("/task/createtask", taskData)
+            const response = await API.post("/task/createtask", taskData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            })
+
             toast(response.data.message, {
                 position: "top-center",
                 autoClose: 2000
@@ -53,8 +57,12 @@ const CreateTasks = () => {
                 description: "",
                 category: "personal",
                 priority: "low",
-                deadline: ""
+                deadline: "",
+                file: null
             });
+            if (fileInputRef.current) {
+                fileInputRef.current.value = "";
+            }
         }
 
     }
@@ -121,10 +129,10 @@ const CreateTasks = () => {
                         <input
                             type='file'
                             name='file'
-                            // value={taskData.file}
-                            onChange={(e) => HandleChange(e)}
+                            ref={fileInputRef}
+                            onChange={(e) => setTaskData({ ...taskData, file: e.target.files[0] })}
                             placeholder="Select Your File..."
-                            required
+                            // required
                             className="w-full p-2 rounded-md text-white outline-none border-2 border-sky-500 resize-none"
                         />
                     </div>
