@@ -17,7 +17,7 @@ const EditTask = () => {
         category: "personal",
         status: "pending",
         priority: "low",
-        // deadline: Date.now()
+        deadline: ""
     });
 
     useEffect(() => {
@@ -45,12 +45,20 @@ const EditTask = () => {
         })
     }
 
-    function HandleSubmit(e) {
+    async function HandleSubmit(e) {
         e.preventDefault();
         try {
-            navigate("/");
+            const response = await API.put(`/task/updatetask/${taskId}`, { taskData })
+            toast(response.data.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+
         } catch (error) {
-            console.log(error);
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
         }
     }
 
@@ -58,6 +66,7 @@ const EditTask = () => {
         <div className="flex">
             <Sidebar />
             <div className="flex justify-center items-center min-h-screen bg-[#1B262C] w-full pl-40">
+
                 <form
                     onSubmit={HandleSubmit}
                     className="bg-[#c517d402] border-2 border-gray-700 shadow-sm shadow-sky-400 rounded-xl p-8 w-full max-w-md space-y-6"
@@ -127,7 +136,7 @@ const EditTask = () => {
                     </div>
 
                     {/* Deadline - Date */}
-                    {/* <div>
+                    <div>
                         <label
                             htmlFor="title"
                             className="block text-white font-medium mb-2"
@@ -142,7 +151,7 @@ const EditTask = () => {
                             placeholder="User email"
                             className="w-full p-3 rounded-md border-2 border-sky-500 text-white text-lg outline-none"
                         />
-                    </div> */}
+                    </div>
 
                     <div className="flex gap-6">
                         <button
