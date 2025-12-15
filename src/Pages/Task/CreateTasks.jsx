@@ -66,7 +66,7 @@ const CreateTasks = () => {
 
                 <form
                     onSubmit={HandleSubmit}
-                    className="bg-[#c517d402] border-2 border-gray-700 shadow-sm shadow-sky-400 rounded-xl px-8 py-4 w-full max-w-md space-y-6"
+                    className="bg-[#c517d402] border-2 border-gray-700 shadow-sm shadow-sky-400 rounded-xl px-8 py-4 mt-2 mb-8 w-full max-w-md space-y-6"
                 >
                     <h2 className="text-2xl font-semibold text-center text-white mb-4">
                         Create Task
@@ -81,6 +81,7 @@ const CreateTasks = () => {
                             Title
                         </label>
                         <input
+                            type='text'
                             name='title'
                             value={taskData.title}
                             onChange={(e) => HandleChange(e)}
@@ -99,10 +100,30 @@ const CreateTasks = () => {
                             Description
                         </label>
                         <input
+                            type='text'
                             name='description'
                             value={taskData.description}
                             onChange={(e) => HandleChange(e)}
                             placeholder="Write Your Description..."
+                            required
+                            className="w-full p-2 rounded-md text-white outline-none border-2 border-sky-500 resize-none"
+                        />
+                    </div>
+
+                    {/* File Upload */}
+                    <div>
+                        <label
+                            htmlFor="description"
+                            className="block text-white font-medium text-xl mb-2"
+                        >
+                            Document
+                        </label>
+                        <input
+                            type='file'
+                            name='file'
+                            // value={taskData.file}
+                            onChange={(e) => HandleChange(e)}
+                            placeholder="Select Your File..."
                             required
                             className="w-full p-2 rounded-md text-white outline-none border-2 border-sky-500 resize-none"
                         />
