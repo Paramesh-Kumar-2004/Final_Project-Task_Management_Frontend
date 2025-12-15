@@ -2,25 +2,47 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Store } from "../../Components/ContextAPI";
 import Sidebar from "../../Components/Sidebar";
+import { toast } from "react-toastify";
+import { API } from "../../API/api";
 
 
 
 const EditTask = () => {
 
-    const { task, setTask } = useContext(Store);
     const navigate = useNavigate();
+    const { taskId } = useParams()
 
-    const [data, setData] = useState({
-        id: "1",
-        title: "1",
-        notes: "1",
-        tags: [1],
-        type: "all",
+    const [taskData, setTaskData] = useState({
+        title: "",
+        category: "personal",
+        status: "pending",
+        priority: "low",
+        // deadline: Date.now()
     });
-    const [tagsInput, setTagsInput] = useState("");
+
+    useEffect(() => {
+        fetchById()
+    }, [])
+
+    const fetchById = async () => {
+        try {
+            const response = await API.get(`/task/getsingletask/${taskId}`)
+            setTaskData(response.data.task[0])
+
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        }
+    }
 
     function HandleChange(e) {
-
+        const { name, value } = e.target
+        setTaskData({
+            ...taskData,
+            [name]: value
+        })
     }
 
     function HandleSubmit(e) {
@@ -41,63 +63,86 @@ const EditTask = () => {
                     className="bg-[#c517d402] border-2 border-gray-700 shadow-sm shadow-sky-400 rounded-xl p-8 w-full max-w-md space-y-6"
                 >
                     <h2 className="text-2xl font-semibold text-center text-white mb-4">
-                        Edit Task
+                        Edit : {taskData.title}
                     </h2>
 
+                    {/* Category - ["work", "personal", "prjects"] */}
                     <div>
                         <label
                             htmlFor="title"
                             className="block text-white font-medium mb-2"
                         >
-                            Title
+                            Category
                         </label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            onChange={HandleChange}
-                            value={data.title}
-                            required
-                            className="w-full border text-sky-50 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
-                        />
+                        <select
+                            name="category"
+                            value={taskData.category}
+                            onChange={(e) => HandleChange(e)}
+                            className="w-full p-3 rounded-md border-2 border-sky-500 text-white text-lg outline-none cursor-pointer"
+                        >
+                            <option value="work" className="text-lg bg-[#1B262C]">Work</option>
+                            <option value="personal" className="text-lg bg-[#1B262C]">Personal</option>
+                            <option value="prjects" className="text-lg bg-[#1B262C]">Prjects</option>
+                        </select>
                     </div>
 
+                    {/* Status - ["pending", "in-progress", "completed"] */}
                     <div>
                         <label
-                            htmlFor="notes"
+                            htmlFor="title"
                             className="block text-white font-medium mb-2"
                         >
-                            Notes
+                            Status
                         </label>
-                        <textarea
-                            id="notes"
-                            name="notes"
-                            onChange={HandleChange}
-                            value={data.notes}
-                            required
-                            rows="4"
-                            className="w-full border text-sky-50 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
-                        ></textarea>
+                        <select
+                            name="status"
+                            value={taskData.status}
+                            onChange={(e) => HandleChange(e)}
+                            className="w-full p-3 rounded-md border-2 border-sky-500 text-white text-lg outline-none cursor-pointer"
+                        >
+                            <option value="pending" className="text-lg bg-[#1B262C]">Pending</option>
+                            <option value="in-progress" className="text-lg bg-[#1B262C]">In-Progress</option>
+                            <option value="completed" className="text-lg bg-[#1B262C]">Completed</option>
+                        </select>
                     </div>
 
+                    {/* Priority - ["low", "medium", "high"] */}
                     <div>
                         <label
-                            htmlFor="tags"
+                            htmlFor="title"
                             className="block text-white font-medium mb-2"
                         >
-                            Tags
+                            Priority
+                        </label>
+                        <select
+                            name="priority"
+                            value={taskData.priority}
+                            onChange={(e) => HandleChange(e)}
+                            className="w-full p-3 rounded-md border-2 border-sky-500 text-white text-lg outline-none cursor-pointer"
+                        >
+                            <option value="low" className="text-lg bg-[#1B262C]">Low</option>
+                            <option value="medium" className="text-lg bg-[#1B262C]">Medium</option>
+                            <option value="high" className="text-lg bg-[#1B262C]">High</option>
+                        </select>
+                    </div>
+
+                    {/* Deadline - Date */}
+                    {/* <div>
+                        <label
+                            htmlFor="title"
+                            className="block text-white font-medium mb-2"
+                        >
+                            Deadline
                         </label>
                         <input
-                            type="text"
-                            id="tags"
-                            name="tags"
-                            onChange={HandleChange}
-                            value={tagsInput}
-                            required
-                            placeholder="e.g. Work, Study, Personal"
-                            className="w-full border text-sky-50 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
+                            type="date"
+                            name="deadline"
+                            value={taskData.deadline}
+                            onChange={(e) => HandleChange(e)}
+                            placeholder="User email"
+                            className="w-full p-3 rounded-md border-2 border-sky-500 text-white text-lg outline-none"
                         />
-                    </div>
+                    </div> */}
 
                     <div className="flex gap-6">
                         <button
