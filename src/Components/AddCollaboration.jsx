@@ -14,7 +14,10 @@ const AddCollaboration = ({ taskId, setRefetch, onClose }) => {
         e.preventDefault();
 
         if (!email.trim()) {
-            toast.error("Email is required");
+            toast.error("Email is required", {
+                position: "top-center",
+                autoClose: 2000
+            });
             return;
         }
 
@@ -26,13 +29,15 @@ const AddCollaboration = ({ taskId, setRefetch, onClose }) => {
                 {
                     task: taskId,
                     control,
-                    email 
+                    email
                 }
             );
 
-            toast.success(response.data.message);
+            toast.success(response.data.message, {
+                position: "top-center",
+                autoClose: 2000
+            });
 
-            // 🔁 trigger parent refetch
             setRefetch(prev => !prev);
 
             setEmail("");

@@ -76,7 +76,7 @@ const TaskDetails = () => {
         }
     }
 
-    const HandleDelete = async (commentId) => {
+    const HandleCommentDelete = async (commentId) => {
         try {
             const response = await API.delete(`/comment/deletecomment/${commentId}`)
             toast.info(response.data.message, {
@@ -89,8 +89,43 @@ const TaskDetails = () => {
                 autoClose: 2000
             })
         } finally {
-            setShowComments(true)
             fetchComments(taskid)
+        }
+    }
+
+    const HandleCollaborationDelete = async (collaborationId) => {
+        try {
+            const response = await API.delete(`/collobaration/deletecollaboration/${collaborationId}`)
+            toast.info(response.data.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        } finally {
+            fetchSingleTask()
+        }
+    }
+
+    const HandleCollaborationUpdateAccess = async (collaborationId, control) => {
+        try {
+            control = control == "edit" ? "read" : "edit"
+            const response = await API.patch(`/collobaration/updatecollaborationcontrol/${collaborationId}`, { control })
+            toast(response.data.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        } finally {
+            fetchSingleTask()
         }
     }
 
@@ -107,7 +142,7 @@ const TaskDetails = () => {
             <div className='w-full min-h-screen bg-[#1B262C] flex flex-col justify-between items-center text-white pl-40 py-3 pb-10'>
 
                 {/* Task */}
-                <div className='w-full'>
+                {/* <div className='w-full'>
                     <div className='py-6 pl-0'>
                         <h1 className='text-sky-50 font-bold text-3xl text-center'>Task Details</h1>
                     </div>
@@ -159,7 +194,7 @@ const TaskDetails = () => {
                             <div className="text-gray-400 text-xl font-semibold mt-10">No Data Found</div>
                         )}
                     </div>
-                </div>
+                </div> */}
 
                 {/* Collaborations */}
                 <div className='w-full'>
@@ -181,7 +216,7 @@ const TaskDetails = () => {
                                 collaborations.map((item) => {
                                     return (
                                         <div
-                                            className="bg-[#0f4c7546] min-w-72 w-80 h-60 border-2 border-[#3282B8] rounded-2xl p-6 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1"
+                                            className="bg-[#0f4c7546] min-w-72 w-80 h-60 border-2 border-[#3282B8] rounded-2xl p-6 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1 flex flex-col justify-between"
                                             key={item._id}
                                         >
                                             <h2 className="text-white font-semibold mb-4 text-xl">
@@ -195,6 +230,21 @@ const TaskDetails = () => {
                                             <p className="text-white font-semibold mb-5 leading-relaxed">
                                                 Access : {item.control}
                                             </p>
+
+                                            <div className='flex flex-wrap justify-between'>
+                                                <button
+                                                    onClick={() => HandleCollaborationUpdateAccess(item._id, item.control)}
+                                                    className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-green-600 text-white hover:border-2 hover:border-green-800"
+                                                >
+                                                    Update To {item.control == "edit" ? "Read" : "Edit"}
+                                                </button>
+                                                <button
+                                                    onClick={() => HandleCollaborationDelete(item._id)}
+                                                    className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-red-600 text-white hover:border-2 hover:border-red-800"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
 
                                         </div>
                                     );
@@ -251,8 +301,8 @@ const TaskDetails = () => {
 
                                         <div>
                                             <button
-                                                className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer hover:bg-red-600 text-white border-2 border-red-800"
-                                                onClick={() => HandleDelete(item._id)}
+                                                onClick={() => HandleCommentDelete(item._id)}
+                                                className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-red-600 text-white hover:border-2 hover:border-red-800"
                                             >
                                                 Delete
                                             </button>
