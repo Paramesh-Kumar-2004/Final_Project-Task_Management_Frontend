@@ -26,7 +26,10 @@ const App = () => {
       <ContextAPI >
 
         <HashRouter>
-          <ToastContainer />
+          <ToastContainer
+            autoClose={1000}
+            position='top-center'
+          />
           <Routes>
 
             <Route path='/register' element={<Register />} />
