@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 const AddCollaboration = ({ taskId, setRefetch, onClose }) => {
 
     const [userId, setUserId] = useState("");
-    const [permission, setPermission] = useState("read");
+    const [permission, setPermission] = useState("view");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [users, setUsers] = useState([])
 
