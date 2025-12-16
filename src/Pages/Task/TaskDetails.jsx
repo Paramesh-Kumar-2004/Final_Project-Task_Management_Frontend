@@ -8,7 +8,7 @@ import { Store } from '../../Components/ContextAPI'
 import { API } from '../../API/api'
 import Loader from '../../Components/Loader'
 import AddComment from '../../Components/AddComment'
-import AddCollaboration from '../../Components/AddCollaboration'
+import ShareTask from '../../Components/ShareTask'
 
 
 
@@ -252,7 +252,7 @@ const TaskDetails = () => {
                         </div>
                     </div>
                     {showAddCollab && (
-                        <AddCollaboration
+                        <ShareTask
                             taskId={taskid}
                             setRefetch={setRefetch}
                             onClose={() => setShowAddCollab(false)}

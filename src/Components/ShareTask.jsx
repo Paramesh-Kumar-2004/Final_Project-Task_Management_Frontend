@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 
 
-const AddCollaboration = ({ taskId, setRefetch, onClose }) => {
+const ShareTask = ({ taskId, setRefetch, onClose }) => {
 
     const [userId, setUserId] = useState("");
     const [permission, setPermission] = useState("view");
@@ -34,7 +34,6 @@ const AddCollaboration = ({ taskId, setRefetch, onClose }) => {
 
         try {
             setIsSubmitting(true);
-            console.log("Permission:", permission, "\nUser Id :", userId);
             const response = await API.put(`/task/sharetask/${taskId}`,
                 { permission, userId }
             );
@@ -117,4 +116,4 @@ const AddCollaboration = ({ taskId, setRefetch, onClose }) => {
     );
 };
 
-export default AddCollaboration;
+export default ShareTask;
