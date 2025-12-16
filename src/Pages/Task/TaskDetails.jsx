@@ -40,7 +40,6 @@ const TaskDetails = () => {
             setIsLoading(true)
             const response = await API.get(`/task/getsingletask/${taskid}`)
             setTaskDetail(response.data.task)
-            setCollaborations(response.data.collaborators)
             // toast(response.data.message, {
             //     position: "top-center",
             //     autoClose: 2000
