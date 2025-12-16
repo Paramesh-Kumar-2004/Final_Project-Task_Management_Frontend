@@ -1,36 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { API } from "../API/api";
+import { useParams } from "react-router-dom";
 
 
 
 const AddCollaboration = ({ taskId, setRefetch, onClose }) => {
 
-    const [email, setEmail] = useState("");
-    const [control, setControl] = useState("read");
+    const [userId, setUserId] = useState("");
+    const [permission, setPermission] = useState("read");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        fetchusers()
+    }, [])
+
+    const fetchusers = async () => {
+        try {
+            const response = await API.get("/auth/getusers")
+            setUsers(response.data.users)
+
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!email.trim()) {
-            toast.error("Email is required", {
-                position: "top-center",
-                autoClose: 2000
-            });
-            return;
-        }
-
         try {
             setIsSubmitting(true);
-
-            const response = await API.post(
-                `/collobaration/addcollaboration`,
-                {
-                    task: taskId,
-                    control,
-                    email
-                }
+            console.log("Permission:", permission, "\nUser Id :", userId);
+            const response = await API.put(`/task/sharetask/${taskId}`,
+                { permission, userId }
             );
 
             toast.success(response.data.message, {
@@ -40,8 +46,8 @@ const AddCollaboration = ({ taskId, setRefetch, onClose }) => {
 
             setRefetch(prev => !prev);
 
-            setEmail("");
-            setControl("read");
+            setPermission("");
+            setUserId("read");
             onClose();
         } catch (error) {
             toast.error(
@@ -57,25 +63,33 @@ const AddCollaboration = ({ taskId, setRefetch, onClose }) => {
             <div className="bg-[#06344d] w-[420px] rounded-xl border-2 border-sky-500 p-6">
 
                 <h2 className="text-white text-xl font-semibold text-center mb-5">
-                    Add Collaboration
+                    Share Task
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
 
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="User email"
-                        className="w-full p-3 rounded-md border-2 border-sky-500 text-white outline-none"
-                    />
-
                     <select
-                        value={control}
-                        onChange={(e) => setControl(e.target.value)}
+                        value={userId}
+                        required
+                        onChange={(e) => setUserId(e.target.value)}
                         className="w-full p-3 rounded-md border-2 border-sky-500 bg-[#06344d] outline-none cursor-pointer"
                     >
-                        <option value="read">Read</option>
+                        <option value="" disabled>
+                            Select Email
+                        </option>
+                        {users.map((user) => (
+                            <option key={user._id} value={user._id}>
+                                {user.email}
+                            </option>
+                        ))}
+                    </select>
+
+                    <select
+                        value={permission}
+                        onChange={(e) => setPermission(e.target.value)}
+                        className="w-full p-3 rounded-md border-2 border-sky-500 bg-[#06344d] outline-none cursor-pointer"
+                    >
+                        <option value="view">View</option>
                         <option value="edit">Edit</option>
                     </select>
 
