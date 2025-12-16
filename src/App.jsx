@@ -29,6 +29,7 @@ const App = () => {
           <ToastContainer
             autoClose={1000}
             position='top-center'
+            draggable
           />
           <Routes>
 
