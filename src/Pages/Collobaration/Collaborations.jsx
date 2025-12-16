@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react'
-import Sidebar from '../Components/Sidebar'
-import { Store } from '../Components/ContextAPI'
+import Sidebar from '../../Components/Sidebar'
+import { Store } from '../../Components/ContextAPI'
 import { useNavigate } from 'react-router-dom'
-import { API } from '../API/api'
+import { API } from '../../API/api'
 import { toast } from 'react-toastify'
-import Loader from '../Components/Loader'
+import Loader from '../../Components/Loader'
 import * as changecase from "change-case"
 import dayjs from 'dayjs'
 
@@ -63,7 +63,6 @@ const Collaborations = () => {
                                 <th className="p-4">Status</th>
                                 <th className="p-4">Deadline</th>
                                 <th className="p-4">Details</th>
-                                <th className="p-4" colSpan={3}>Actions</th>
                             </tr>
                         </thead>
                         <tbody className="text-white text-base">
@@ -90,23 +89,10 @@ const Collaborations = () => {
                                             <td className="p-3">
                                                 <button
                                                     className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer text-amber-500 hover:bg-yellow-500 hover:text-white"
-                                                    onClick={() => navigate(`/task/${item.task._id}`)}
+                                                    onClick={() => navigate(`/collaboration/${item.task._id}`)}
                                                 >
                                                     View More
                                                 </button>
-                                            </td>
-                                            <td className="p-3">
-                                                <button className="px-4 py-1.5 font-semibold rounded-md text-green-600 hover:bg-green-800 hover:text-white transition-colors duration-300 cursor-pointer"
-                                                    onClick={() => navigate(`/edit-task/${item._id}`)}
-                                                >
-                                                    Edit
-                                                </button>
-                                            </td>
-                                            <td className="p-3">
-                                                <button
-                                                    // onClick={() => HandleDelete(item._id)}
-                                                    className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer text-red-600 hover:bg-red-600 hover:text-white"
-                                                >Delete</button>
                                             </td>
                                         </tr>
                                     )
