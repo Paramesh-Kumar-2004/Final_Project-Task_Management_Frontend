@@ -15,6 +15,7 @@ const Login = () => {
     const [viewPassword, setViewPassword] = useState(false);
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth") || false);
     const [role, setRole] = useState(localStorage.getItem("role") || "normal");
+    const [userId, setUserId] = useState(localStorage.getItem("userId") || null)
 
 
     const [loginData, setLoginData] = useState({
@@ -43,6 +44,7 @@ const Login = () => {
 
             localStorage.setItem("isAuth", response.data.isAuth);
             localStorage.setItem("role", response.data.role)
+            localStorage.setItem("userId", response.data.userId)
 
             if (response.status === 200) {
                 navigate("/")

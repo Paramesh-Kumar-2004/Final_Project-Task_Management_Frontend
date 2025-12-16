@@ -39,7 +39,7 @@ const App = () => {
             <Route path='/edit-task/:taskId' element={<EditTask />} />
             <Route path='/task/:taskid' element={<TaskDetails />} />
             <Route path='/collaborations' element={<Collaborations />} />
-            <Route path='/collaboration/:id' element={<CollaborationDetails />} />
+            <Route path='/collaboration/:taskid' element={<CollaborationDetails />} />
             <Route path='/settings' element={<Settings />} />
 
             <Route path='*' element={<NotFound />} />

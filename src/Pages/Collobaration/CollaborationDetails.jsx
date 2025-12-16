@@ -19,6 +19,7 @@ const CollaborationDetails = () => {
 
     const [showAddComment, setShowAddComment] = useState(false);
     const [showAddCollab, setShowAddCollab] = useState(false);
+    const [userId, setUserId] = useState(localStorage.getItem("userId") || null)
 
     const {
         isLoading, setIsLoading,
@@ -28,6 +29,15 @@ const CollaborationDetails = () => {
         comments, setComments,
         refetch, setRefetch
     } = useContext(Store)
+
+    const hasEditAccess = (taskId) => {
+        return collaborations?.some(
+            (collab) =>
+                String(collab.task) === String(taskId) &&
+                String(collab.user) === String(userId) &&
+                collab.control === "edit"
+        );
+    };
 
     useEffect(() => {
         fetchSingleTask()
@@ -41,10 +51,6 @@ const CollaborationDetails = () => {
             const response = await API.get(`/task/getsingletask/${taskid}`)
             setTaskDetail(response.data.task)
             setCollaborations(response.data.collaborators)
-            // toast(response.data.message, {
-            //     position: "top-center",
-            //     autoClose: 2000
-            // })
         } catch (error) {
             toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
@@ -153,8 +159,12 @@ const CollaborationDetails = () => {
                                         key={item._id}
                                     >
                                         <h2 className="text-white font-semibold mb-4 text-xl">
-                                            Task : {changecase.capitalCase(item.title)}
+                                            Creator : {item.user.userName}
                                         </h2>
+
+                                        <p className="text-white font-semibold mb-5 leading-relaxed">
+                                            Task : {changecase.capitalCase(item.title)}
+                                        </p>
 
                                         <p className="text-white font-semibold mb-5 leading-relaxed">
                                             Description : {item.description}
@@ -179,11 +189,14 @@ const CollaborationDetails = () => {
                                             Deadline : {dayjs(item.deadline).format("DD:MM:YYYY")}
                                         </p>
 
-                                        <button className="px-4 py-1.5 font-semibold rounded-md text-white bg-green-800 hover:scale-110 transition-all duration-300 cursor-pointer"
-                                            onClick={() => navigate(`/edit-task/${item._id}`)}
-                                        >
-                                            Edit
-                                        </button>
+                                        {hasEditAccess(item._id) && (
+                                            <button
+                                                className="px-4 py-1.5 font-semibold rounded-md text-white bg-green-800 hover:scale-110 transition-all duration-300 cursor-pointer"
+                                                onClick={() => navigate(`/edit-task/${item._id}`)}
+                                            >
+                                                Edit
+                                            </button>
+                                        )}
 
                                     </div>
                                 );
@@ -229,20 +242,22 @@ const CollaborationDetails = () => {
                                                 Access : {item.control}
                                             </p>
 
-                                            <div className='flex flex-wrap justify-between'>
-                                                <button
-                                                    onClick={() => HandleCollaborationUpdateAccess(item._id, item.control)}
-                                                    className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-green-600 text-white hover:border-2 hover:border-green-800"
-                                                >
-                                                    Update To {item.control == "edit" ? "Read" : "Edit"}
-                                                </button>
-                                                <button
-                                                    onClick={() => HandleCollaborationDelete(item._id)}
-                                                    className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-red-600 text-white hover:border-2 hover:border-red-800"
-                                                >
-                                                    Delete
-                                                </button>
-                                            </div>
+                                            {/* {userId == item.collabuser._id && (
+                                                <div className='flex flex-wrap justify-between'>
+                                                    <button
+                                                        onClick={() => HandleCollaborationUpdateAccess(item._id, item.control)}
+                                                        className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-green-600 text-white hover:border-2 hover:border-green-800"
+                                                    >
+                                                        Update To {item.control == "edit" ? "Read" : "Edit"}
+                                                    </button>
+                                                    <button
+                                                        onClick={() => HandleCollaborationDelete(item._id)}
+                                                        className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-red-600 text-white hover:border-2 hover:border-red-800"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            )} */}
 
                                         </div>
                                     );
