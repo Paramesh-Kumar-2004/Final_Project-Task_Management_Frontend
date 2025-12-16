@@ -24,6 +24,7 @@ const TasksTables = () => {
             setIsLoading(true)
             const response = await API.get("/task/gettasks")
             setTask(response.data.tasks)
+            console.log(task)
         } catch (error) {
             console.log(error.response.data.message)
             toast.error(error.response?.data?.message || error.message, {
