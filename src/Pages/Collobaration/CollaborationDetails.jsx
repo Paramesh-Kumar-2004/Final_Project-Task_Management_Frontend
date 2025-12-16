@@ -312,7 +312,7 @@ const CollaborationDetails = () => {
                                             Comment : {item.comment}
                                         </p>
 
-                                        {userId == item.user._id && (
+                                        {userId == item.user._id && (   
                                             <div>
                                                 <button
                                                     onClick={() => HandleCommentDelete(item._id)}
