@@ -8,7 +8,7 @@ import { Store } from '../../Components/ContextAPI'
 import { API } from '../../API/api'
 import Loader from '../../Components/Loader'
 import AddComment from '../../Components/AddComment'
-import AddCollaboration from '../../Components/AddCollaboration'
+import AddCollaboration from '../../Components/ShareTask'
 
 
 
@@ -312,7 +312,7 @@ const CollaborationDetails = () => {
                                             Comment : {item.comment}
                                         </p>
 
-                                        {userId == item.user._id && (   
+                                        {userId == item.user._id && (
                                             <div>
                                                 <button
                                                     onClick={() => HandleCommentDelete(item._id)}

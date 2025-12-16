@@ -10,7 +10,7 @@ const ContextAPI = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [task, setTask] = useState([]);
     const [taskDetail, setTaskDetail] = useState([]);
-    const [collaborations, setCollaborations] = useState([])
+    const [sharedWithTask, setSharedWithTask] = useState([])
     const [comments, setComments] = useState([])
     const [search, setSearch] = useState("")
     const [filter, setFilter] = useState("all")
@@ -23,7 +23,7 @@ const ContextAPI = ({ children }) => {
             isLoading, setIsLoading,
             task, setTask,
             taskDetail, setTaskDetail,
-            collaborations, setCollaborations,
+            sharedWithTask, setSharedWithTask,
             comments, setComments,
             search, setSearch,
             filter, setFilter,

@@ -24,7 +24,7 @@ const TaskDetails = () => {
         isLoading, setIsLoading,
         task, setTask,
         taskDetail, setTaskDetail,
-        collaborations, setCollaborations,
+        sharedWithTask, setSharedWithTask,
         comments, setComments,
         refetch, setRefetch
     } = useContext(Store)
@@ -40,6 +40,10 @@ const TaskDetails = () => {
             setIsLoading(true)
             const response = await API.get(`/task/getsingletask/${taskid}`)
             setTaskDetail(response.data.task)
+            response.data.task.sharedWith.forEach(task => {
+                console.table(task.sharedWith);
+            });
+
             // toast(response.data.message, {
             //     position: "top-center",
             //     autoClose: 2000
@@ -209,8 +213,8 @@ const TaskDetails = () => {
                         </div>
 
                         <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif] pt-4 pr-3">
-                            {collaborations.length > 0 ? (
-                                collaborations.map((item) => {
+                            {sharedWithTask.length > 0 ? (
+                                sharedWithTask.map((item) => {
                                     return (
                                         <div
                                             className="bg-[#0f4c7546] min-w-72 w-80 h-60 border-2 border-[#3282B8] rounded-2xl p-6 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1 flex flex-col justify-between"
