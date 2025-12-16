@@ -40,9 +40,8 @@ const TaskDetails = () => {
             setIsLoading(true)
             const response = await API.get(`/task/getsingletask/${taskid}`)
             setTaskDetail(response.data.task)
-            response.data.task.sharedWith.forEach(task => {
-                console.table(task.sharedWith);
-            });
+
+            console.log('sharedWith:', response.data.task.sharedWith);
 
             // toast(response.data.message, {
             //     position: "top-center",
@@ -149,48 +148,44 @@ const TaskDetails = () => {
                     </div>
                     <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif] pt-4 pr-3">
                         {taskDetail.length !== 0 ? (
-                            taskDetail.map((item) => {
-                                return (
-                                    <div
-                                        className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl p-6 w-40 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1"
-                                        key={item._id}
-                                    >
-                                        <h2 className="text-white font-semibold mb-4 text-xl">
-                                            Task : {changecase.capitalCase(item.title)}
-                                        </h2>
+                            <div
+                                className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl p-6 w-40 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1"
+                                key={taskDetail._id}
+                            >
+                                <h2 className="text-white font-semibold mb-4 text-xl">
+                                    Task : {changecase.capitalCase(taskDetail.title)}
+                                </h2>
 
-                                        <p className="text-white font-semibold mb-5 leading-relaxed">
-                                            Description : {item.description}
-                                        </p>
+                                <p className="text-white font-semibold mb-5 leading-relaxed">
+                                    Description : {taskDetail.description}
+                                </p>
 
-                                        <p className="text-white font-semibold mb-5 leading-relaxed">
-                                            Category : {changecase.capitalCase(item.category)}
-                                        </p>
+                                <p className="text-white font-semibold mb-5 leading-relaxed">
+                                    Category : {changecase.capitalCase(taskDetail.category)}
+                                </p>
 
-                                        <p className="text-white font-semibold mb-5 leading-relaxed">
-                                            Status : {changecase.capitalCase(item.status)}
-                                        </p>
+                                <p className="text-white font-semibold mb-5 leading-relaxed">
+                                    Status : {changecase.capitalCase(taskDetail.status)}
+                                </p>
 
-                                        <p className="text-white font-semibold mb-5 leading-relaxed">
-                                            Priority :
-                                            <span className={`${item.priority == "medium" ? "text-cyan-500" : item.priority == "high" ? "text-red-600" : "text-yellow-300"}`}>
-                                                {" " + changecase.capitalCase(item.priority)}
-                                            </span>
-                                        </p>
+                                <p className="text-white font-semibold mb-5 leading-relaxed">
+                                    Priority :
+                                    <span className={`${taskDetail.priority == "medium" ? "text-cyan-500" : taskDetail.priority == "high" ? "text-red-600" : "text-yellow-300"}`}>
+                                        {" " + changecase.capitalCase(taskDetail.priority)}
+                                    </span>
+                                </p>
 
-                                        <p className="text-white font-semibold mb-5 leading-relaxed">
-                                            Deadline : {dayjs(item.deadline).format("DD:MM:YYYY")}
-                                        </p>
+                                <p className="text-white font-semibold mb-5 leading-relaxed">
+                                    Deadline : {dayjs(taskDetail.deadline).format("DD:MM:YYYY")}
+                                </p>
 
-                                        <button className="px-4 py-1.5 font-semibold rounded-md text-white bg-green-800 hover:scale-110 transition-all duration-300 cursor-pointer"
-                                            onClick={() => navigate(`/edit-task/${item._id}`)}
-                                        >
-                                            Edit
-                                        </button>
+                                <button className="px-4 py-1.5 font-semibold rounded-md text-white bg-green-800 hover:scale-110 transition-all duration-300 cursor-pointer"
+                                    onClick={() => navigate(`/edit-task/${item._id}`)}
+                                >
+                                    Edit
+                                </button>
 
-                                    </div>
-                                );
-                            })
+                            </div>
                         ) : (
                             <div className="text-gray-400 text-xl font-semibold mt-10">No Data Found</div>
                         )}
