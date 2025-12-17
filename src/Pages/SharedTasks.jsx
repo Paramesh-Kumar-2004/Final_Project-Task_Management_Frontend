@@ -25,7 +25,7 @@ const SharedTasks = () => {
             setIsLoading(true)
             const response = await API.get("/task/getsharedtasks")
             setSharedWithTask(response.data.tasks);
-            console.log(response.data.tasks)
+
         } catch (error) {
             console.log(error.response.data.message)
             toast.error(error.response?.data?.message || error.message, {

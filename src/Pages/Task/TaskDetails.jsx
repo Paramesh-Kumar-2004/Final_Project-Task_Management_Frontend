@@ -18,6 +18,7 @@ const TaskDetails = () => {
     const navigate = useNavigate()
     const { taskid } = useParams()
     const [userId, setUserId] = useState(localStorage.getItem("userId") || null)
+    const [createdBy, setCreatedBy] = useState(null)
     const [showAddComment, setShowAddComment] = useState(false);
     const [showAddCollab, setShowAddCollab] = useState(false);
 
@@ -41,10 +42,13 @@ const TaskDetails = () => {
             setIsLoading(true)
             const response = await API.get(`/task/getsingletask/${taskid}`)
             setTaskDetail(response.data.task)
-            console.log('sharedWith:', response.data.task.sharedWith);
             setSharedWithTask(response.data.task.sharedWith);
+            setCreatedBy(response.data.task.createdBy._id)
+
+            // console.log(response.data.task.createdBy._id, userId)
 
         } catch (error) {
+            console.log(error)
             toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
                 autoClose: 2000
@@ -192,7 +196,7 @@ const TaskDetails = () => {
                             <h1 className='text-sky-50 font-semibold text-2xl text-center'>Shared Tasks</h1>
                         </div>
 
-                        {taskDetail.createdBy == userId && (
+                        {createdBy == userId && (
                             <div className='flex items-center justify-end gap-2 pb-6 pr-3'>
                                 <button
                                     onClick={() => setShowAddCollab(true)}
