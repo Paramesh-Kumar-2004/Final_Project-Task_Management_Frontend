@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 
 
-const ShareTask = ({ taskId, setRefetch, onClose }) => {
+const ShareTheTask = ({ taskId, setRefetch, onClose }) => {
 
     const [userId, setUserId] = useState("");
     const [permission, setPermission] = useState("view");
@@ -116,4 +116,4 @@ const ShareTask = ({ taskId, setRefetch, onClose }) => {
     );
 };
 
-export default ShareTask;
+export default ShareTheTask;

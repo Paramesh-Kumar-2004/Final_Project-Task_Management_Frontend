@@ -8,7 +8,7 @@ import { Store } from '../../Components/ContextAPI'
 import { API } from '../../API/api'
 import Loader from '../../Components/Loader'
 import AddComment from '../../Components/AddComment'
-import ShareTask from '../../Components/ShareTask'
+import ShareTheTask from '../../Components/ShareTheTask'
 
 
 
@@ -62,10 +62,6 @@ const TaskDetails = () => {
         try {
             const response = await API.get(`/comment/getcomments/${taskid}`)
             setComments(response.data.comments)
-            // toast(response.data.message, {
-            //     position: "top-center",
-            //     autoClose: 2000
-            // })
         } catch (error) {
             toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
@@ -180,7 +176,7 @@ const TaskDetails = () => {
                                 </p>
 
                                 <button className="px-4 py-1.5 font-semibold rounded-md text-white bg-green-800 hover:scale-110 transition-all duration-300 cursor-pointer"
-                                    onClick={() => navigate(`/edit-task/${item._id}`)}
+                                    onClick={() => navigate(`/edit-task/${taskDetail._id}`)}
                                 >
                                     Edit
                                 </button>
@@ -251,7 +247,7 @@ const TaskDetails = () => {
                         </div>
                     </div>
                     {showAddCollab && (
-                        <ShareTask
+                        <ShareTheTask
                             taskId={taskid}
                             setRefetch={setRefetch}
                             onClose={() => setShowAddCollab(false)}

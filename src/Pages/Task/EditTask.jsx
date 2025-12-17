@@ -27,7 +27,7 @@ const EditTask = () => {
     const fetchById = async () => {
         try {
             const response = await API.get(`/task/getsingletask/${taskId}`)
-            setTaskData(response.data.task[0])
+            setTaskData(response.data.task)
 
         } catch (error) {
             toast.error(error.response?.data?.message || error.message, {

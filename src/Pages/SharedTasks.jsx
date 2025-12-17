@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react'
-import Sidebar from '../../Components/Sidebar'
-import { Store } from '../../Components/ContextAPI'
+import Sidebar from '../Components/Sidebar'
+import { Store } from '../Components/ContextAPI'
 import { useNavigate } from 'react-router-dom'
-import { API } from '../../API/api'
+import { API } from '../API/api'
 import { toast } from 'react-toastify'
-import Loader from '../../Components/Loader'
+import Loader from '../Components/Loader'
 import * as changecase from "change-case"
 import dayjs from 'dayjs'
 
@@ -13,7 +13,7 @@ import dayjs from 'dayjs'
 const Collaborations = () => {
 
     const navigate = useNavigate()
-    const { collaborations, setCollaborations, isLoading, setIsLoading } = useContext(Store)
+    const { sharedWithTask, setSharedWithTask, isLoading, setIsLoading } = useContext(Store)
 
     useEffect(() => {
         fetchCollaboration()
@@ -66,8 +66,8 @@ const Collaborations = () => {
                             </tr>
                         </thead>
                         <tbody className="text-white text-base">
-                            {collaborations.length > 0 ? (
-                                collaborations.map((item) => {
+                            {sharedWithTask.length > 0 ? (
+                                sharedWithTask.map((item) => {
                                     return (
                                         <tr key={item._id}
                                             className="bg-[#0f4c7546] border-2 border-sky-600 text-center transition-transform duration-300 ease-in-out hover:shadow-[inset_0_0_14px_rgba(71,166,230,1)]">
