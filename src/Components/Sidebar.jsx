@@ -25,7 +25,7 @@ const Sidebar = () => {
                 className='font-semibold text-lg p-2 cursor-pointer'>Create Task</div>
             <div
                 onClick={() => navigate("/shared-tasks")}
-                className='font-semibold text-lg p-2 cursor-pointer'>Collaborations</div>
+                className='font-semibold text-lg p-2 cursor-pointer'>Shared Tasks</div>
             <div
                 onClick={() => navigate("/settings")}
                 className='font-semibold text-lg p-2 cursor-pointer'>Settings</div>

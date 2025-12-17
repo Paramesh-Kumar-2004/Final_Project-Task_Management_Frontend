@@ -10,7 +10,7 @@ import dayjs from 'dayjs'
 
 
 
-const Collaborations = () => {
+const SharedTasks = () => {
 
     const navigate = useNavigate()
     const { sharedWithTask, setSharedWithTask, isLoading, setIsLoading } = useContext(Store)
@@ -23,8 +23,8 @@ const Collaborations = () => {
     const fetchCollaboration = async () => {
         try {
             setIsLoading(true)
-            const response = await API.get("/collobaration/getcollaborations")
-            setCollaborations(response.data.Collaborations ?? []);
+            const response = await API.get("/task/get")
+            setSharedWithTask([]);
         } catch (error) {
             console.log(error.response.data.message)
             toast.error(error.response?.data?.message || error.message, {
@@ -52,7 +52,7 @@ const Collaborations = () => {
                 <div className='w-full min-h-screen bg-[#1B262C] flex flex-col items-center text-white pl-40 py-3 px-3'>
 
                     <div className='py-6 pl-0'>
-                        <h1 className='text-sky-400 font-bold text-3xl text-center'>My Collaborations</h1>
+                        <h1 className='text-sky-400 font-bold text-3xl text-center'>My SharedTasks</h1>
                     </div>
                     <table className="w-full min-w-xs mx-5">
                         <thead className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl w-full p-6 text-start transition-transform text-emerald-300 text-lg">
@@ -114,4 +114,4 @@ const Collaborations = () => {
     );
 };
 
-export default Collaborations
+export default SharedTasks
