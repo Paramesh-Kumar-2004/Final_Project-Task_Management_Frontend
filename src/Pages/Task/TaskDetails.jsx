@@ -9,6 +9,7 @@ import { API } from '../../API/api'
 import Loader from '../../Components/Loader'
 import AddComment from '../../Components/AddComment'
 import ShareTheTask from '../../Components/ShareTheTask'
+import SharedTasks from '../SharedTasks'
 
 
 
@@ -40,10 +41,8 @@ const TaskDetails = () => {
             setIsLoading(true)
             const response = await API.get(`/task/getsingletask/${taskid}`)
             setTaskDetail(response.data.task)
-            console.log(response.data.task)
-
-            // console.log('sharedWith:', response.data.task.sharedWith);
-            // setSharedWithTask(response.data.task.sharedWith);
+            console.log('sharedWith:', response.data.task.sharedWith);
+            setSharedWithTask(response.data.task.sharedWith);
 
         } catch (error) {
             toast.error(error.response?.data?.message || error.message, {
@@ -192,18 +191,21 @@ const TaskDetails = () => {
                         <div className='py-6'>
                             <h1 className='text-sky-50 font-semibold text-2xl text-center'>Shared Tasks</h1>
                         </div>
-                        <div className='flex items-center justify-end gap-2 pb-6 pr-3'>
-                            <button
-                                onClick={() => setShowAddCollab(true)}
-                                className='bg-sky-900 text-white font-semibold text-base border-2 border-sky-400 p-2 rounded-xl cursor-pointer'
-                            >
-                                Add Collaboration
-                            </button>
-                        </div>
+
+                        {taskDetail.createdBy == userId && (
+                            <div className='flex items-center justify-end gap-2 pb-6 pr-3'>
+                                <button
+                                    onClick={() => setShowAddCollab(true)}
+                                    className='bg-sky-900 text-white font-semibold text-base border-2 border-sky-400 p-2 rounded-xl cursor-pointer'
+                                >
+                                    Share Task
+                                </button>
+                            </div>
+                        )}
 
                         <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif] pt-4 pr-3">
-                            {taskDetail.length > 0 ? (
-                                taskDetail.map((item) => {
+                            {sharedWithTask.length > 0 ? (
+                                sharedWithTask.map((item) => {
                                     return (
                                         <div
                                             className="bg-[#0f4c7546] min-w-72 w-80 h-60 border-2 border-[#3282B8] rounded-2xl p-6 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1 flex flex-col justify-between"
