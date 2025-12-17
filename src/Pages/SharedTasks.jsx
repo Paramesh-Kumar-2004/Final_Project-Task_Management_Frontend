@@ -19,7 +19,6 @@ const SharedTasks = () => {
         fetchCollaboration()
     }, [])
 
-
     const fetchCollaboration = async () => {
         try {
             setIsLoading(true)

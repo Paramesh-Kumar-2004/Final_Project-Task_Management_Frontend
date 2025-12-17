@@ -216,11 +216,11 @@ const TaskDetails = () => {
                                             key={item._id}
                                         >
                                             <h2 className="text-white font-semibold mb-4 text-xl">
-                                                Name : {item.user.userName}
+                                                Name : {item.user?.userName}
                                             </h2>
 
                                             <p className="text-white font-semibold mb-5 leading-relaxed break-all">
-                                                Email : {item.user.email}
+                                                Email : {item.user?.email}
                                             </p>
 
                                             <p className="text-white font-semibold mb-5 leading-relaxed">
