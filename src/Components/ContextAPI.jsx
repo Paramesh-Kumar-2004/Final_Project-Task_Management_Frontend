@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
+import { API } from '../API/api';
 
 
 export const Store = createContext()
@@ -16,12 +18,32 @@ const ContextAPI = ({ children }) => {
     const [filter, setFilter] = useState("all")
     const [deleteData, setDeleteData] = useState([])
     const [refetch, setRefetch] = useState(false)
+    const [users, setUsers] = useState([])
+
+
+    const fetchusers = async () => {
+        try {
+            const response = await API.get("/auth/getusers")
+            setUsers(response.data.users)
+
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        }
+    }
+
+    useEffect(() => {
+        fetchusers()
+    }, [taskDetail, task])
 
 
     return (
         <Store.Provider value={{
             isLoading, setIsLoading,
             task, setTask,
+            users, setUsers,
             taskDetail, setTaskDetail,
             sharedWithTask, setSharedWithTask,
             comments, setComments,

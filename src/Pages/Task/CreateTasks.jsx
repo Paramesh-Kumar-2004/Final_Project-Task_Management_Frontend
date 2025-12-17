@@ -19,6 +19,7 @@ const CreateTasks = () => {
         category: "personal",
         priority: "low",
         deadline: "",
+        assignedTo: "",
         file: null
     });
 
@@ -118,25 +119,6 @@ const CreateTasks = () => {
                         />
                     </div>
 
-                    {/* File Upload */}
-                    <div>
-                        <label
-                            htmlFor="description"
-                            className="block text-white font-medium text-xl mb-2"
-                        >
-                            Document
-                        </label>
-                        <input
-                            type='file'
-                            name='file'
-                            ref={fileInputRef}
-                            onChange={(e) => setTaskData({ ...taskData, file: e.target.files[0] })}
-                            placeholder="Select Your File..."
-                            // required
-                            className="w-full p-2 rounded-md text-white outline-none border-2 border-sky-500 resize-none"
-                        />
-                    </div>
-
                     {/* Category & Priority */}
                     <div className='flex flex-wrap justify-between gap-3'>
 
@@ -181,66 +163,57 @@ const CreateTasks = () => {
                         </div>
                     </div>
 
-                    {/* Status - ["pending", "in-progress", "completed"] */}
-                    {/* <div>
-                        <label
-                            htmlFor="title"
-                            className="block text-white font-medium text-xl mb-2"
-                        >
-                            Status
-                        </label>
-                        <select
-                            name="status"
-                            value={taskData.status}
-                            onChange={(e) => HandleChange(e)}
-                            className="w-full p-2 rounded-md border-2 border-sky-500 text-white text-lg outline-none cursor-pointer"
-                        >
-                            <option value="pending" className="text-lg bg-[#1B262C]">Pending</option>
-                            <option value="in-progress" className="text-lg bg-[#1B262C]">In-Progress</option>
-                            <option value="completed" className="text-lg bg-[#1B262C]">Completed</option>
-                        </select>
-                    </div> */}
 
-                    {/* Priority - ["low", "medium", "high"] */}
-                    {/* <div>
-                        <label
-                            htmlFor="priority"
-                            className="block text-white font-medium text-xl mb-2"
-                        >
-                            Priority
-                        </label>
-                        <select
-                            name="priority"
-                            value={taskData.priority}
-                            onChange={(e) => HandleChange(e)}
-                            className="w-full p-2 rounded-md border-2 border-sky-500 text-white text-lg outline-none cursor-pointer"
-                        >
-                            <option value="low" className="text-lg bg-[#1B262C]">Low</option>
-                            <option value="medium" className="text-lg bg-[#1B262C]">Medium</option>
-                            <option value="high" className="text-lg bg-[#1B262C]">High</option>
-                        </select>
-                    </div> */}
+                    {/* File Upload & Deadline */}
+                    <div className='flex flex-wrap justify-between gap-3'>
 
-                    {/* Deadline - Date */}
+                        {/* File */}
+                        <div className='flex-1'>
+                            <label
+                                htmlFor="description"
+                                className="block text-white font-medium text-xl mb-2"
+                            >
+                                Document
+                            </label>
+                            <input
+                                type='file'
+                                name='file'
+                                ref={fileInputRef}
+                                onChange={(e) => setTaskData({ ...taskData, file: e.target.files[0] })}
+                                placeholder="Select Your File..."
+                                // required
+                                className="w-full p-2 rounded-md text-white outline-none border-2 border-sky-500 resize-none cursor-pointer"
+                            />
+                        </div>
+
+                        {/* Deadline - Date */}
+                        <div className='flex-1'>
+                            <label
+                                htmlFor="deadline"
+                                className="block text-white font-medium text-xl mb-2"
+                            >
+                                Deadline
+                            </label>
+                            <input
+                                type="date"
+                                name="deadline"
+                                value={
+                                    taskData.deadline
+                                        ? new Date(taskData.deadline).toISOString().split("T")[0]
+                                        : ""
+                                }
+                                onChange={(e) => HandleChange(e)}
+                                required
+                                className="w-full p-2 rounded-md border-2 border-sky-500 text-white text-lg outline-none"
+                            />
+                        </div>
+                    </div>
+
                     <div>
-                        <label
-                            htmlFor="deadline"
-                            className="block text-white font-medium text-xl mb-2"
-                        >
-                            Deadline
-                        </label>
-                        <input
-                            type="date"
-                            name="deadline"
-                            value={
-                                taskData.deadline
-                                    ? new Date(taskData.deadline).toISOString().split("T")[0]
-                                    : ""
-                            }
-                            onChange={(e) => HandleChange(e)}
-                            required
-                            className="w-full p-2 rounded-md border-2 border-sky-500 text-white text-lg outline-none"
-                        />
+                        <label htmlFor="assignTo">Assign To</label>
+                        <select name="assignTo" id="">
+                            
+                        </select>
                     </div>
 
                     <div className="flex gap-6">

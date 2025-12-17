@@ -1,33 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import { API } from "../API/api";
 import { useParams } from "react-router-dom";
+import { Store } from "./ContextAPI";
 
 
 
 const ShareTheTask = ({ taskId, setRefetch, onClose }) => {
 
+
+    const { users, setUsers } = useContext(Store)
     const [userId, setUserId] = useState("");
     const [permission, setPermission] = useState("view");
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [users, setUsers] = useState([])
-
-    useEffect(() => {
-        fetchusers()
-    }, [])
-
-    const fetchusers = async () => {
-        try {
-            const response = await API.get("/auth/getusers")
-            setUsers(response.data.users)
-
-        } catch (error) {
-            toast.error(error.response?.data?.message || error.message, {
-                position: "top-center",
-                autoClose: 2000
-            })
-        }
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
