@@ -71,20 +71,29 @@ const SharedTasks = () => {
                                     return (
                                         <tr key={item._id}
                                             className="bg-[#0f4c7546] border-2 border-sky-600 text-center transition-transform duration-300 ease-in-out hover:shadow-[inset_0_0_14px_rgba(71,166,230,1)]">
+
                                             <td className="p-3">
-                                                {item.createdBy.userName}
+                                                {item.createdBy?.userName}
                                             </td>
                                             <td className="p-3">
-                                                {changecase.capitalCase(item.title)}
+                                                {item.title
+                                                    ? changecase.capitalCase(item.title)
+                                                    : "NA"}
                                             </td>
                                             <td className="p-3">
-                                                {changecase.capitalCase(item.priority)}
+                                                {item.priority
+                                                    ? changecase.capitalCase(item.priority)
+                                                    : "NA"}
                                             </td>
                                             <td className="p-3">
-                                                {changecase.capitalCase(item.status)}
+                                                {item.status
+                                                    ? changecase.capitalCase(item.status)
+                                                    : "NA"}
                                             </td>
                                             <td className="p-3">
-                                                {dayjs(item.deadline).format("DD-MM-YYYY")}
+                                                {item.deadline
+                                                    ? dayjs(item.deadline).format("DD-MM-YYYY")
+                                                    : "NA"}
                                             </td>
 
                                             <td className="p-3">
