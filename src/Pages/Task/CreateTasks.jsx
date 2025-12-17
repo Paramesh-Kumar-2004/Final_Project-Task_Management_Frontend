@@ -11,7 +11,7 @@ const CreateTasks = () => {
 
     const navigate = useNavigate()
     const fileInputRef = useRef(null)
-    const { task, setTask } = useContext(Store)
+    const { task, setTask, users, setUsers } = useContext(Store)
 
     const [taskData, setTaskData] = useState({
         title: "",
@@ -210,9 +210,28 @@ const CreateTasks = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="assignTo">Assign To</label>
-                        <select name="assignTo" id="">
-                            
+                        <label
+                            htmlFor="assignTo"
+                            className='className="block text-white font-medium text-xl mb-2"'
+                        >
+                            Assign To
+                        </label>
+                        <select
+                            name='assignedTo'
+                            value={taskData.assignedTo}
+                            onChange={(e) => HandleChange(e)}
+                            className="w-full p-2 rounded-md border-2 border-sky-500 text-white text-lg outline-none"
+                        >
+                            <option value="" disabled className='text-lg bg-[#1B262C] border-2'>
+                                Select Email
+                            </option>
+                            {users.map((user) => (
+                                <option key={user._id} value={user._id}
+                                    className='text-lg bg-[#1B262C]'
+                                >
+                                    {user.email}
+                                </option>
+                            ))}
                         </select>
                     </div>
 
