@@ -126,6 +126,10 @@ const TaskDetails = () => {
         }
     }
 
+    const hasEditPermission = sharedWithTask?.some(item => {
+        return (item.user?._id === userId && item.permission === "edit") || createdBy === userId
+    });
+
 
     if (isLoading) {
         return (
@@ -176,11 +180,13 @@ const TaskDetails = () => {
                                     Deadline : {dayjs(taskDetail.deadline).format("DD:MM:YYYY")}
                                 </p>
 
-                                <button className="px-4 py-1.5 font-semibold rounded-md text-white bg-green-800 hover:scale-110 transition-all duration-300 cursor-pointer"
-                                    onClick={() => navigate(`/edit-task/${taskDetail._id}`)}
-                                >
-                                    Edit
-                                </button>
+                                {hasEditPermission && (
+                                    <button className="px-4 py-1.5 font-semibold rounded-md text-white bg-green-800 hover:scale-110 transition-all duration-300 cursor-pointer"
+                                        onClick={() => navigate(`/edit-task/${taskDetail._id}`)}
+                                    >
+                                        Edit
+                                    </button>
+                                )}
 
                             </div>
                         ) : (
@@ -227,20 +233,22 @@ const TaskDetails = () => {
                                                 Access : {item.permission}
                                             </p>
 
-                                            <div className='flex flex-wrap justify-between'>
-                                                <button
-                                                    onClick={() => HandleCollaborationUpdateAccess(item._id, item.permission)}
-                                                    className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-green-600 text-white hover:border-2 hover:border-green-800"
-                                                >
-                                                    Update To {item.permission == "edit" ? "Read" : "Edit"}
-                                                </button>
-                                                <button
-                                                    onClick={() => HandleCollaborationDelete(item._id)}
-                                                    className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-red-600 text-white hover:border-2 hover:border-red-800"
-                                                >
-                                                    Delete
-                                                </button>
-                                            </div>
+                                            {userId == createdBy && (
+                                                <div className='flex flex-wrap justify-between'>
+                                                    <button
+                                                        onClick={() => HandleCollaborationUpdateAccess(item._id, item.permission)}
+                                                        className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-green-600 text-white hover:border-2 hover:border-green-800"
+                                                    >
+                                                        Update To {item.permission == "edit" ? "Read" : "Edit"}
+                                                    </button>
+                                                    <button
+                                                        onClick={() => HandleCollaborationDelete(item._id)}
+                                                        className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-red-600 text-white hover:border-2 hover:border-red-800"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            )}
 
                                         </div>
                                     );
