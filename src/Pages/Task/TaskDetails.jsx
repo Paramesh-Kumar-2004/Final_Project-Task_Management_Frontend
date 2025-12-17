@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { use, useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import * as changecase from "change-case"
@@ -16,7 +16,7 @@ const TaskDetails = () => {
 
     const navigate = useNavigate()
     const { taskid } = useParams()
-
+    const [userId, setUserId] = useState(localStorage.getItem("userId") || null)
     const [showAddComment, setShowAddComment] = useState(false);
     const [showAddCollab, setShowAddCollab] = useState(false);
 
@@ -40,13 +40,11 @@ const TaskDetails = () => {
             setIsLoading(true)
             const response = await API.get(`/task/getsingletask/${taskid}`)
             setTaskDetail(response.data.task)
+            console.log(response.data.task)
 
-            console.log('sharedWith:', response.data.task.sharedWith);
+            // console.log('sharedWith:', response.data.task.sharedWith);
+            // setSharedWithTask(response.data.task.sharedWith);
 
-            // toast(response.data.message, {
-            //     position: "top-center",
-            //     autoClose: 2000
-            // })
         } catch (error) {
             toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
@@ -192,7 +190,7 @@ const TaskDetails = () => {
                 <div className='w-full'>
                     <div className='w-full'>
                         <div className='py-6'>
-                            <h1 className='text-sky-50 font-semibold text-2xl text-center'>Collaborations</h1>
+                            <h1 className='text-sky-50 font-semibold text-2xl text-center'>Shared Tasks</h1>
                         </div>
                         <div className='flex items-center justify-end gap-2 pb-6 pr-3'>
                             <button
@@ -204,31 +202,31 @@ const TaskDetails = () => {
                         </div>
 
                         <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif] pt-4 pr-3">
-                            {sharedWithTask.length > 0 ? (
-                                sharedWithTask.map((item) => {
+                            {taskDetail.length > 0 ? (
+                                taskDetail.map((item) => {
                                     return (
                                         <div
                                             className="bg-[#0f4c7546] min-w-72 w-80 h-60 border-2 border-[#3282B8] rounded-2xl p-6 text-start transition-transform duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_0_14px_rgba(71,166,230,1)] flex-1 flex flex-col justify-between"
                                             key={item._id}
                                         >
                                             <h2 className="text-white font-semibold mb-4 text-xl">
-                                                Name : {item.collabuser.userName}
+                                                Name : {item.user.userName}
                                             </h2>
 
                                             <p className="text-white font-semibold mb-5 leading-relaxed break-all">
-                                                Email : {item.collabuser.email}
+                                                Email : {item.user.email}
                                             </p>
 
                                             <p className="text-white font-semibold mb-5 leading-relaxed">
-                                                Access : {item.control}
+                                                Access : {item.permission}
                                             </p>
 
                                             <div className='flex flex-wrap justify-between'>
                                                 <button
-                                                    onClick={() => HandleCollaborationUpdateAccess(item._id, item.control)}
+                                                    onClick={() => HandleCollaborationUpdateAccess(item._id, item.permission)}
                                                     className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-green-600 text-white hover:border-2 hover:border-green-800"
                                                 >
-                                                    Update To {item.control == "edit" ? "Read" : "Edit"}
+                                                    Update To {item.permission == "edit" ? "Read" : "Edit"}
                                                 </button>
                                                 <button
                                                     onClick={() => HandleCollaborationDelete(item._id)}

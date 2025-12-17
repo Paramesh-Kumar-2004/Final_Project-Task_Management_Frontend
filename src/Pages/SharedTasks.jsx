@@ -23,8 +23,9 @@ const SharedTasks = () => {
     const fetchCollaboration = async () => {
         try {
             setIsLoading(true)
-            const response = await API.get("/task/get")
-            setSharedWithTask([]);
+            const response = await API.get("/task/getsharedtasks")
+            setSharedWithTask(response.data.tasks);
+            console.log(response.data.tasks)
         } catch (error) {
             console.log(error.response.data.message)
             toast.error(error.response?.data?.message || error.message, {
@@ -72,24 +73,25 @@ const SharedTasks = () => {
                                         <tr key={item._id}
                                             className="bg-[#0f4c7546] border-2 border-sky-600 text-center transition-transform duration-300 ease-in-out hover:shadow-[inset_0_0_14px_rgba(71,166,230,1)]">
                                             <td className="p-3">
-                                                {item.user.userName}
+                                                {item.createdBy.userName}
                                             </td>
                                             <td className="p-3">
-                                                {changecase.capitalCase(item.task?.title ?? "NA")}
+                                                {changecase.capitalCase(item.title)}
                                             </td>
                                             <td className="p-3">
-                                                {changecase.capitalCase(item.task?.priority ?? "NA")}
+                                                {changecase.capitalCase(item.priority)}
                                             </td>
                                             <td className="p-3">
-                                                {changecase.capitalCase(item.task?.status ?? "NA")}
+                                                {changecase.capitalCase(item.status)}
                                             </td>
                                             <td className="p-3">
-                                                {dayjs(item.task.deadline).format("DD-MM-YYYY")}
+                                                {dayjs(item.deadline).format("DD-MM-YYYY")}
                                             </td>
+
                                             <td className="p-3">
                                                 <button
                                                     className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer text-amber-500 hover:bg-yellow-500 hover:text-white"
-                                                    onClick={() => navigate(`/collaboration/${item.task._id}`)}
+                                                    onClick={() => navigate(`/task/${item._id}`)}
                                                 >
                                                     View More
                                                 </button>
