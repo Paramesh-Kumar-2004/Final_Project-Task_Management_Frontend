@@ -9,7 +9,22 @@ const Sidebar = () => {
     const navigate = useNavigate()
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth") || false)
 
-    
+    useEffect(() => {
+        if (!isAuth) {
+            navigate("/login")
+        }
+    }, [])
+
+    const HandleLogout = async () => {
+        try {
+            localStorage.clear()
+            toast.success("Logout Success")
+            navigate("/login")
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
 
     return (
         <nav className='bg-[#06344d] h-screen min-w-36 w-fit flex flex-col justify-evenly py-4 items-center text-white fixed'>
@@ -29,9 +44,12 @@ const Sidebar = () => {
             <div
                 onClick={() => navigate("/shared-tasks")}
                 className='font-semibold text-lg p-2 cursor-pointer'>Shared Tasks</div>
-            <div
+            {/* <div
                 onClick={() => navigate("/settings")}
-                className='font-semibold text-lg p-2 cursor-pointer'>Settings</div>
+                className='font-semibold text-lg p-2 cursor-pointer'>Settings</div> */}
+            <div
+                onClick={HandleLogout}
+                className='font-semibold text-lg p-2 cursor-pointer'>Logout</div>
         </nav>
     )
 }
