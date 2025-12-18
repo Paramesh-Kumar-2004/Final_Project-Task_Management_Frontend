@@ -9,7 +9,7 @@ import { API } from '../../API/api'
 import Loader from '../../Components/Loader'
 import AddComment from '../../Components/AddComment'
 import ShareTheTask from '../../Components/ShareTheTask'
-import SharedTasks from '../SharedTasks'
+import SharedTasks from '../Task/SharedTasks'
 
 
 
