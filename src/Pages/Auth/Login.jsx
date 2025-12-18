@@ -13,10 +13,6 @@ const Login = () => {
     const { isLoading, setIsLoading } = useContext(Store)
 
     const [viewPassword, setViewPassword] = useState(false);
-    const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth") || false);
-    const [role, setRole] = useState(localStorage.getItem("role") || "normal");
-    const [userId, setUserId] = useState(localStorage.getItem("userId") || null)
-
 
     const [loginData, setLoginData] = useState({
         email: "",
@@ -43,8 +39,11 @@ const Login = () => {
             });
 
             localStorage.setItem("isAuth", response.data.isAuth);
-            localStorage.setItem("role", response.data.role)
-            localStorage.setItem("userId", response.data.userId)
+            localStorage.setItem("role", response.data.user.role)
+            localStorage.setItem("userId", response.data.user._id)
+            localStorage.setItem("userName", response.data.user.userName)
+            localStorage.setItem("user", JSON.stringify(response.data.user))
+
 
             if (response.status === 200) {
                 navigate("/")
