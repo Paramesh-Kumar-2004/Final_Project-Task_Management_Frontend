@@ -112,7 +112,7 @@ const SharedTasks = () => {
                                     <td
                                         colSpan={7}
                                         className="py-4 font-extrabold text-sky-500 bg-[#0f4c7546] border-2 border-red-900 text-center transition-transform duration-300 ease-in-out"
-                                    >No Data Found</td>
+                                    >No Shared Tasks</td>
                                 </tr>
                             )}
                         </tbody>
