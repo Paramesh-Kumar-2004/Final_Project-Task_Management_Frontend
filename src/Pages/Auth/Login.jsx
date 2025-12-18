@@ -42,8 +42,6 @@ const Login = () => {
             localStorage.setItem("role", response.data.user.role)
             localStorage.setItem("userId", response.data.user._id)
             localStorage.setItem("userName", response.data.user.userName)
-            localStorage.setItem("user", JSON.stringify(response.data.user))
-
 
             if (response.status === 200) {
                 navigate("/")
