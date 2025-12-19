@@ -1,3 +1,4 @@
+import { scales } from "chart.js";
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
@@ -15,14 +16,15 @@ const BarChart = ({ total, completed, upcoming }) => {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: { display: false }
-        }
+        },
     };
 
     return (
-        <div className="bg-[#1B262C] p-4 rounded-lg">
-            <h2 className="text-lg font-semibold mb-3">Task Overview</h2>
+        <div className="bg-[#1B262C] p-4 rounded-lg h-[400px]">
+            <h2 className="text-center text-lg font-semibold mb-3">Task Overview</h2>
             <Bar data={data} options={options} />
         </div>
     );

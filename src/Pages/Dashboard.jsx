@@ -30,9 +30,10 @@ const Dashboard = () => {
         <div className='flex'>
             <Sidebar />
             <div className="bg-[#1B262C] text-white min-h-screen font-[Poppins,sans-serif w-full pl-40">
-                <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
 
-                <div className="flex gap-4">
+                <h1 className='text-sky-400 font-bold text-3xl text-center m-3'>Dashboard</h1>
+
+                <div className="flex flex-wrap gap-4">
                     <div className="min-w-3xs flex-1">
                         <BarChart
                             total={report.totalTasks}
