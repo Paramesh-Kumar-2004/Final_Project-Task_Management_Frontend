@@ -17,6 +17,7 @@ const PieChart = ({ total, completed }) => {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: "bottom"
@@ -25,7 +26,7 @@ const PieChart = ({ total, completed }) => {
     };
 
     return (
-        <div className="bg-[#1B262C] p-4 rounded-lg">
+        <div className="bg-[#1B262C] p-4 rounded-lg h-[400px]">
             <h2 className="text-lg font-semibold mb-3">Task Completion</h2>
             <Pie data={data} options={options} />
             <p className="text-center mt-3 font-medium">
