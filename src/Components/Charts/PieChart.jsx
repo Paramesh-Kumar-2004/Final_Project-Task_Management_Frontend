@@ -1,3 +1,4 @@
+import { Colors } from "chart.js";
 import React from "react";
 import { Pie } from "react-chartjs-2";
 
@@ -10,7 +11,9 @@ const PieChart = ({ total, completed }) => {
         datasets: [
             {
                 data: [completed, remaining],
-                backgroundColor: ["#22c55e", "#ef4444"]
+                backgroundColor: ["#22c55e", "#ef4444"],
+                borderWidth: 1,
+                borderColor: "#1B262C"
             }
         ]
     };
@@ -20,7 +23,10 @@ const PieChart = ({ total, completed }) => {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                position: "bottom"
+                position: "bottom",
+                labels: {
+                    color: "white"
+                }
             }
         }
     };
