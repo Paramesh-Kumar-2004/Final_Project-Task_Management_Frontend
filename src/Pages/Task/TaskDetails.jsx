@@ -307,14 +307,16 @@ const TaskDetails = () => {
                                             Comment : {item.comment}
                                         </p>
 
-                                        <div>
-                                            <button
-                                                onClick={() => HandleCommentDelete(item._id)}
-                                                className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-red-600 text-white hover:border-2 hover:border-red-800"
-                                            >
-                                                Delete
-                                            </button>
-                                        </div>
+                                        {item.user._id == userId && (
+                                            <div>
+                                                <button
+                                                    onClick={() => HandleCommentDelete(item._id)}
+                                                    className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-red-600 text-white hover:border-2 hover:border-red-800"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        )}
 
                                     </div>
                                 )
