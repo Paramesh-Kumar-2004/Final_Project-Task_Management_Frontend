@@ -4,12 +4,16 @@ import { Bar } from "react-chartjs-2";
 
 const BarChart = ({ total, completed, upcoming }) => {
     const data = {
-        labels: ["Total Tasks", "Completed Tasks", "Upcoming Deadlines(7 days)"],
+        labels: ["Total Tasks", "Completed Tasks", "Upcoming Deadlines (7 days)"],
         datasets: [
             {
                 label: "Task Summary",
                 data: [total, completed, upcoming],
-                backgroundColor: "#38bdf8"
+                backgroundColor: [
+                    "#38bdf8",
+                    "#22c55e",
+                    "#F79A19"
+                ]
             }
         ]
     };
@@ -19,7 +23,7 @@ const BarChart = ({ total, completed, upcoming }) => {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                position: "bottom",
+                position: "top",
                 labels: {
                     color: "white"
                 }

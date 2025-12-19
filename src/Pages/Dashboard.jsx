@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../Components/Charts/chartConfig";
-import TaskBarChart from "../Components/Charts/BarChart";
 import BarChart from "../Components/Charts/BarChart";
 import { API } from "../API/api"
 import PieChart from "../Components/Charts/PieChart";
