@@ -17,19 +17,28 @@ const TasksTables = () => {
         deleteData, setDeleteData,
         isLoading, setIsLoading,
         search, setSearch,
-        filter, setFilter,
-        paginate, setPaginate
+        status, setStatus,
+        paginate, setPaginate,
+        priority, setPriority
     } = useContext(Store)
 
     useEffect(() => {
         fetchData()
-    }, [deleteData, search, filter, paginate])
+    }, [deleteData, search, status, paginate, priority])
 
 
     const fetchData = async () => {
         try {
             setIsLoading(true)
-            const response = await API.get("/task/gettasks")
+            const response = await API.get("/task/gettasks", {
+                params: {
+                    ...(search && { search }),
+                    ...(status && { status }),
+                    ...(priority && { priority }),
+                    page: paginate,
+                    limit: 2
+                }
+            });
             setTask(response.data.tasks)
         } catch (error) {
             console.log(error.response.data.message)
