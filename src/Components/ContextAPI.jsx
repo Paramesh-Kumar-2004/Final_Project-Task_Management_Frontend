@@ -22,6 +22,7 @@ const ContextAPI = ({ children }) => {
     const [status, setStatus] = useState("");
     const [priority, setPriority] = useState("");
     const [paginate, setPaginate] = useState(1);
+    const [page, setPage] = useState(1);
 
 
 
@@ -56,7 +57,8 @@ const ContextAPI = ({ children }) => {
             search, setSearch,
             status, setStatus,
             paginate, setPaginate,
-            priority, setPriority
+            priority, setPriority,
+            page, setPage,
         }}>
             {children}
         </Store.Provider>

@@ -8,14 +8,14 @@ import { Store } from '../ContextAPI';
 
 export const Paginate = () => {
 
-    const { paginate, setPaginate } = useContext(Store)
+    const { paginate, setPaginate, page } = useContext(Store)
 
     return (
         <div className="text-white mt-5 mb-10 text-center flex justify-center">
             <div>
                 <Stack spacing={2}>
                     <Pagination
-                        count={10}
+                        count={page}
                         page={paginate}
                         onChange={(e, value) => setPaginate(value)}
                         color="primary"

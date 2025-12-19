@@ -19,7 +19,8 @@ const TasksTables = () => {
         search, setSearch,
         status, setStatus,
         paginate, setPaginate,
-        priority, setPriority
+        priority, setPriority,
+        page, setPage
     } = useContext(Store)
 
     useEffect(() => {
@@ -36,9 +37,10 @@ const TasksTables = () => {
                     ...(status && { status }),
                     ...(priority && { priority }),
                     page: paginate,
-                    limit: 2
+                    limit: 5
                 }
             });
+            setPage(Math.ceil(response.data.count / 5))
             setTask(response.data.tasks)
         } catch (error) {
             console.log(error.response.data.message)
