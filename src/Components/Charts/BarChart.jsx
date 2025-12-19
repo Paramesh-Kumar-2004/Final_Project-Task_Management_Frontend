@@ -1,0 +1,31 @@
+import React from "react";
+import { Bar } from "react-chartjs-2";
+
+const BarChart = ({ total, completed, upcoming }) => {
+    const data = {
+        labels: ["Total Tasks", "Completed Tasks", "Upcoming Deadlines"],
+        datasets: [
+            {
+                label: "Task Summary",
+                data: [total, completed, upcoming],
+                backgroundColor: "#38bdf8"
+            }
+        ]
+    };
+
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: { display: false }
+        }
+    };
+
+    return (
+        <div className="bg-[#1B262C] p-4 rounded-lg">
+            <h2 className="text-lg font-semibold mb-3">Task Overview</h2>
+            <Bar data={data} options={options} />
+        </div>
+    );
+};
+
+export default BarChart;
