@@ -4,10 +4,12 @@ import BarChart from "../Components/Charts/BarChart";
 import { API } from "../API/api"
 import PieChart from "../Components/Charts/PieChart";
 import Sidebar from "../Components/Sidebar";
+import Loader from "../Components/Loader";
 
 
 
 const Dashboard = () => {
+
     const [report, setReport] = useState(null);
 
     useEffect(() => {
@@ -23,7 +25,6 @@ const Dashboard = () => {
         }
     };
 
-    if (!report) return <p className="p-6">Loading dashboard...</p>;
 
     return (
         <div className='flex'>
@@ -32,23 +33,27 @@ const Dashboard = () => {
 
                 <h1 className='text-sky-400 font-bold text-3xl text-center m-3'>Dashboard</h1>
 
-                <div className="flex flex-wrap gap-4">
-                    <div className="min-w-3xs flex-1">
-                        <BarChart
-                            total={report.totalTasks}
-                            completed={report.completedTasks}
-                            upcoming={report.upcomingDeadlines}
-                        />
+                {report != null ? (
+                    <div className="flex flex-wrap gap-4">
+                        <div className="min-w-3xs flex-1">
+                            <BarChart
+                                total={report.totalTasks}
+                                completed={report.completedTasks}
+                                upcoming={report.upcomingDeadlines}
+                            />
+                        </div>
+                        <div className="min-w-3xs flex-1">
+                            <PieChart
+                                total={report.totalTasks}
+                                completed={report.completedTasks}
+                            />
+                        </div>
                     </div>
-                    <div className="min-w-3xs flex-1">
-                        <PieChart
-                            total={report.totalTasks}
-                            completed={report.completedTasks}
-                        />
-                    </div>
-                </div>
+                ) : (
+                    <Loader loadingMessage="Chart Data Is Loading..." />
+                )}
             </div>
-        </div>
+        </div >
     );
 };
 
