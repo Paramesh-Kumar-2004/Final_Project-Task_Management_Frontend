@@ -12,11 +12,18 @@ import Loader from "./Loader";
 const TasksTables = () => {
 
     const navigate = useNavigate()
-    const { task, setTask, deleteData, setDeleteData, isLoading, setIsLoading } = useContext(Store)
+    const {
+        task, setTask,
+        deleteData, setDeleteData,
+        isLoading, setIsLoading,
+        search, setSearch,
+        filter, setFilter,
+        paginate, setPaginate
+    } = useContext(Store)
 
     useEffect(() => {
         fetchData()
-    }, [deleteData])
+    }, [deleteData, search, filter, paginate])
 
 
     const fetchData = async () => {

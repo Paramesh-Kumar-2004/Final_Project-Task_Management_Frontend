@@ -48,10 +48,10 @@ const ContextAPI = ({ children }) => {
             taskDetail, setTaskDetail,
             sharedWithTask, setSharedWithTask,
             comments, setComments,
-            search, setSearch,
-            filter, setFilter,
             deleteData, setDeleteData,
             refetch, setRefetch,
+            search, setSearch,
+            filter, setFilter,
             paginate, setPaginate
         }}>
             {children}
