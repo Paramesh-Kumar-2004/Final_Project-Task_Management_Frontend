@@ -14,11 +14,12 @@ const ContextAPI = ({ children }) => {
     const [taskDetail, setTaskDetail] = useState([]);
     const [sharedWithTask, setSharedWithTask] = useState([])
     const [comments, setComments] = useState([])
-    const [search, setSearch] = useState("")
-    const [filter, setFilter] = useState("all")
     const [deleteData, setDeleteData] = useState([])
     const [refetch, setRefetch] = useState(false)
     const [users, setUsers] = useState([])
+    const [search, setSearch] = useState("")
+    const [filter, setFilter] = useState("all")
+    const [paginate, setPaginate] = useState(5)
 
 
     const fetchusers = async () => {
@@ -50,7 +51,8 @@ const ContextAPI = ({ children }) => {
             search, setSearch,
             filter, setFilter,
             deleteData, setDeleteData,
-            refetch, setRefetch
+            refetch, setRefetch,
+            paginate, setPaginate
         }}>
             {children}
         </Store.Provider>
