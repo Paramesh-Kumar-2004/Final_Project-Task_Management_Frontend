@@ -86,7 +86,7 @@ const TasksTables = () => {
     return (
         <>
 
-            <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif] overflow-x-scroll">
+            <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif] overflow-x-scroll [scrollbar-width:none]">
 
                 <table className="w-full min-w-xs mx-5">
                     <thead className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl w-full p-6 text-start transition-transform text-emerald-300 text-lg">
