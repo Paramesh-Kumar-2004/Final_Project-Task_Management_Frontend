@@ -49,12 +49,12 @@ const SharedTasks = () => {
 
             <div className='flex'>
                 <Sidebar />
-                <div className='w-full min-h-screen bg-[#1B262C] flex flex-col items-center text-white pl-40 py-3 px-3'>
+                <div className='w-full min-h-screen bg-[#1B262C] flex flex-col items-center text-white pl-40 py-3 px-3 overflow-x-scroll'>
 
                     <div className='py-6 pl-0'>
                         <h1 className='text-sky-400 font-bold text-3xl text-center'>My SharedTasks</h1>
                     </div>
-                    <table className="w-full min-w-xs mx-5">
+                    <table className="w-full min-w-xs mx-5 ">
                         <thead className="bg-[#0f4c7546] border-2 border-[#3282B8] rounded-2xl w-full p-6 text-start transition-transform text-emerald-300 text-lg">
                             <tr>
                                 <th className="p-4">Admin</th>
