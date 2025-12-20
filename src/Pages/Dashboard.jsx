@@ -35,7 +35,7 @@ const Dashboard = () => {
 
                 {report != null ? (
                     <div className="flex flex-wrap gap-4">
-                        <div className="min-w-3xs flex-1">
+                        <div className="min-w-2xs flex-1">
                             <BarChart
                                 total={report.totalTasks}
                                 completed={report.completedTasks}
