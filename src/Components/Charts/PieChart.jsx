@@ -34,7 +34,7 @@ const PieChart = ({ total, completed }) => {
 
     return (
         <div className="rounded-lg h-full">
-            <div className="p-4 rounded-lg h-[400px] ">
+            <div className="bg-black rounded-lg h-[400px] ">
                 <h2 className="text-center text-lg font-semibold mb-3">Task Completion</h2>
                 <Pie data={data} options={options} />
                 <p className="text-center mt-3 font-medium">
