@@ -49,7 +49,7 @@ const SharedTasks = () => {
 
             <div className='flex'>
                 <Sidebar />
-                <div className='w-full min-h-screen bg-[#1B262C] flex flex-col items-center text-white pl-40 py-3 px-3 overflow-x-scroll'>
+                <div className='w-full min-h-screen bg-[#1B262C] flex flex-col items-center text-white pl-40 py-3 px-3 overflow-x-scroll [scrollbar-width:none]'>
 
                     <div className='py-6 pl-0'>
                         <h1 className='text-sky-400 font-bold text-3xl text-center'>My SharedTasks</h1>
