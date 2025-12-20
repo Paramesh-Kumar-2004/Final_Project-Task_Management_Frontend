@@ -42,7 +42,7 @@ const Dashboard = () => {
                                 upcoming={report.upcomingDeadlines}
                             />
                         </div>
-                        <div className="min-w-3xs flex-1 bg-red-500">
+                        <div className="min-w-3xs flex-1">
                             <PieChart
                                 total={report.totalTasks}
                                 completed={report.completedTasks}
