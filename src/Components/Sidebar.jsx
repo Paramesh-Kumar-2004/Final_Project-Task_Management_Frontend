@@ -30,26 +30,31 @@ const Sidebar = () => {
         <nav className='bg-[#06344d] h-screen min-w-36 w-fit flex flex-col justify-evenly py-4 items-center text-white fixed'>
             <div>
                 {/* <img src={testIMG} alt="img" width={50} /> */}
-                <h1 className='text-center'>VP</h1>
+                <h1
+                    className='text-center cursor-pointer text-xl font-extrabold hover:scale-110 duration-300 transition-all'
+                    onClick={() => navigate("/")}
+                >
+                    VP
+                </h1>
             </div>
             <div
                 onClick={() => navigate("/")}
-                className='font-semibold text-lg p-2 cursor-pointer'>Dashboard</div>
+                className='font-semibold text-lg p-2 cursor-pointer  '>Dashboard</div>
             <div
                 onClick={() => navigate("/tasks")}
-                className='font-semibold text-lg p-2 cursor-pointer'>Tasks</div>
+                className='font-semibold text-lg p-2 cursor-pointer '>Tasks</div>
             <div
                 onClick={() => navigate("/createTasks")}
-                className='font-semibold text-lg p-2 cursor-pointer'>Create Task</div>
+                className='font-semibold text-lg p-2 cursor-pointer '>Create Task</div>
             <div
                 onClick={() => navigate("/shared-tasks")}
-                className='font-semibold text-lg p-2 cursor-pointer'>Shared Tasks</div>
+                className='font-semibold text-lg p-2 cursor-pointer '>Shared Tasks</div>
             {/* <div
                 onClick={() => navigate("/settings")}
-                className='font-semibold text-lg p-2 cursor-pointer'>Settings</div> */}
+                className='font-semibold text-lg p-2 cursor-pointer '>Settings</div> */}
             <div
                 onClick={HandleLogout}
-                className='font-semibold text-lg p-2 cursor-pointer'>Logout</div>
+                className='font-semibold text-lg p-2 cursor-pointer '>Logout</div>
         </nav>
     )
 }
