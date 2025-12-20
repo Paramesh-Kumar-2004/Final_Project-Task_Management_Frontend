@@ -2,6 +2,8 @@ import { scales } from "chart.js";
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
+
+
 const BarChart = ({ total, completed, upcoming }) => {
     const data = {
         labels: ["Total Tasks", "Completed Tasks", "Upcoming Deadlines (7 days)"],
@@ -31,14 +33,10 @@ const BarChart = ({ total, completed, upcoming }) => {
         },
         scales: {
             x: {
-                ticks: {
-                    color: 'white',
-                }
+                ticks: { color: 'white', }
             },
             y: {
-                ticks: {
-                    color: 'white',
-                }
+                ticks: { color: 'white', }
             }
         }
     };
