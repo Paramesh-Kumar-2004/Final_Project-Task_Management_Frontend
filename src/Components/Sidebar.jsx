@@ -39,22 +39,22 @@ const Sidebar = () => {
             </div>
             <div
                 onClick={() => navigate("/")}
-                className='font-semibold text-lg p-2 cursor-pointer  '>Dashboard</div>
+                className='font-semibold text-lg p-2 cursor-pointer hover:scale-110 duration-300 transition-all '>Dashboard</div>
             <div
                 onClick={() => navigate("/tasks")}
-                className='font-semibold text-lg p-2 cursor-pointer '>Tasks</div>
+                className='font-semibold text-lg p-2 cursor-pointer hover:scale-110 duration-300 transition-all'>Tasks</div>
             <div
                 onClick={() => navigate("/createTasks")}
-                className='font-semibold text-lg p-2 cursor-pointer '>Create Task</div>
+                className='font-semibold text-lg p-2 cursor-pointer hover:scale-110 duration-300 transition-all'>Create Task</div>
             <div
                 onClick={() => navigate("/shared-tasks")}
-                className='font-semibold text-lg p-2 cursor-pointer '>Shared Tasks</div>
+                className='font-semibold text-lg p-2 cursor-pointer hover:scale-110 duration-300 transition-all'>Shared Tasks</div>
             {/* <div
                 onClick={() => navigate("/settings")}
-                className='font-semibold text-lg p-2 cursor-pointer '>Settings</div> */}
+                className='font-semibold text-lg p-2 cursor-pointer hover:scale-110 duration-300 transition-all'>Settings</div> */}
             <div
                 onClick={HandleLogout}
-                className='font-semibold text-lg p-2 cursor-pointer '>Logout</div>
+                className='font-semibold text-lg p-2 cursor-pointer hover:scale-110 duration-300 transition-all'>Logout</div>
         </nav>
     )
 }
