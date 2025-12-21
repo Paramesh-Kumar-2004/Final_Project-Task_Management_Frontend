@@ -45,7 +45,9 @@ const BarChart = ({ total, completed, upcoming }) => {
         <div className="bg-[#1B262C] p-4 rounded-lg h-[400px]">
             <h2 className="text-center text-lg font-semibold mb-3">Task Overview</h2>
             {total > 0 ? (
-                <Bar data={data} options={options} />
+                <div className="relative h-[350px] w-full">
+                    <Bar data={data} options={options} />
+                </div>
             ) : (
                 <h1 className='text-sky-400 font-bold text-3xl text-center m-3'>The Data Is Empty</h1>
             )}

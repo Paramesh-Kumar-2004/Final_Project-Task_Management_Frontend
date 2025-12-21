@@ -140,7 +140,7 @@ const TaskDetails = () => {
     return (
         <div className='flex'>
             <Sidebar />
-            <div className='w-full min-h-screen bg-[#1B262C] flex flex-col justify-between items-center text-white pl-40 py-3 pb-10'>
+            <div className='bg-[#1B262C] text-white min-h-screen font-[Poppins,sans-serif w-full md:ml-36 pt-20 md:pt-0 pl-3'>
 
                 {/* Task */}
                 <div className='w-full'>

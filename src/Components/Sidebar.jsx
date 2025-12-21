@@ -27,7 +27,10 @@ const Sidebar = () => {
     }
 
     return (
-        <nav className='bg-[#06344d] h-screen min-w-36 w-fit flex flex-col justify-evenly py-4 items-center text-white fixed'>
+        <nav
+            className="bg-[#06344d] text-white fixed w-full min-h-16 h-fit flex flex-wrap flex-row justify-around items-center 
+            md:h-screen md:w-fit md:min-w-36 md:flex-col md:justify-evenly md:py-4 z-10"
+        >
             <div>
                 {/* <img src={testIMG} alt="img" width={50} /> */}
                 <h1

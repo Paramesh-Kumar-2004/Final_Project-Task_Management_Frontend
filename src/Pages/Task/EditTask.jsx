@@ -66,7 +66,7 @@ const EditTask = () => {
     return (
         <div className="flex">
             <Sidebar />
-            <div className="flex justify-center items-center min-h-screen bg-[#1B262C] w-full pl-40">
+            <div className="flex justify-center items-center min-h-screen bg-[#1B262C] text-white font-[Poppins,sans-serif w-full md:ml-36 pt-20 md:pt-0">
 
                 <form
                     onSubmit={HandleSubmit}
