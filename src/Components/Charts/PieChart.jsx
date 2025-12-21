@@ -12,7 +12,7 @@ const PieChart = ({ total, completed }) => {
         datasets: [
             {
                 data: [completed, remaining],
-                backgroundColor: ["#22c55e", "#DC0000"],
+                backgroundColor: ["#08CB00", "#DC0000"],
                 borderWidth: 1,
                 borderColor: "#1B262C"
             }
