@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router'
 import { toast } from 'react-toastify';
 import Car2 from "../../assets/Car_Images_2.jpg"
+import { API } from '../../API/api';
 
 
 
@@ -14,7 +15,7 @@ const ForgetPassword = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await API.post("/auth/forgetpassword", email);
+            const response = await API.post("/auth/forgetpassword", { email });
             toast.success("Password reset link sent to your email!", {
                 position: "top-center",
                 autoClose: 2000,
