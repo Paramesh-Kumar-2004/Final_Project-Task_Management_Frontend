@@ -2,7 +2,7 @@ import React from 'react'
 import { HashRouter, BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
-import ContextAPI from './Components/ContextAPI'
+import ContextProvider from './Components/ContextProvider'
 import CreateTasks from './Pages/Task/CreateTasks'
 import EditTask from './Pages/Task/EditTask'
 import Tasks from './Pages/Task/Tasks'
@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <>
-      <ContextAPI >
+      <ContextProvider >
 
         <HashRouter>
           <ToastContainer
@@ -49,7 +49,7 @@ const App = () => {
           </Routes>
         </HashRouter>
 
-      </ContextAPI>
+      </ContextProvider>
     </>
   )
 }

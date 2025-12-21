@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import { API } from "../API/api";
 import { useParams } from "react-router-dom";
-import { Store } from "./ContextAPI";
+import { Store } from "./ContextProvider";
 
 
 

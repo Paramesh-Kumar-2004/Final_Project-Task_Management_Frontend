@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { API } from "../API/api";
-import { Store } from "./ContextAPI";
+import { Store } from "./ContextProvider";
 
 const AddComment = ({ taskId, onClose }) => {
 

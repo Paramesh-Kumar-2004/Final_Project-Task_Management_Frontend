@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { Store } from '../ContextAPI';
+import { Store } from '../ContextProvider';
 
 
 

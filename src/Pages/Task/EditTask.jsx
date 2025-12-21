@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Store } from "../../Components/ContextAPI";
+import { Store } from "../../Components/ContextProvider";
 import Sidebar from "../../Components/Sidebar";
 import { toast } from "react-toastify";
 import { API } from "../../API/api";

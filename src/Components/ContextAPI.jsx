@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { API } from '../API/api';
@@ -7,7 +6,7 @@ import { API } from '../API/api';
 export const Store = createContext()
 
 
-const ContextAPI = ({ children }) => {
+const ContextProvider = ({ children }) => {
 
     const [isLoading, setIsLoading] = useState(false)
     const [task, setTask] = useState([]);
@@ -26,7 +25,7 @@ const ContextAPI = ({ children }) => {
 
 
 
-    const fetchusers = async () => {
+    const fetchUsers = async () => {
         try {
             const response = await API.get("/auth/getusers")
             setUsers(response.data.users)
@@ -40,7 +39,7 @@ const ContextAPI = ({ children }) => {
     }
 
     useEffect(() => {
-        fetchusers()
+        fetchUsers()
     }, [taskDetail, task])
 
 
@@ -65,4 +64,4 @@ const ContextAPI = ({ children }) => {
     )
 }
 
-export default ContextAPI
+export default ContextProvider
