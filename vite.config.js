@@ -8,6 +8,6 @@ export default defineConfig(({ command }) => ({
     react(),
     tailwindcss()
   ],
-  base: command === 'build' ? '/Notes_App_Project-2/' : '/',
+  base: command === 'build' ? '/Final_Project-Task_Management_Frontend/' : '/',
 }))
 
