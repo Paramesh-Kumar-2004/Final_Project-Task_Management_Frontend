@@ -1,16 +1,43 @@
-# React + Vite
+# Task Management Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for the task management system. It is built using React, React Router, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User authentication and authorization
+- Create, read, update, and delete tasks
+- Share tasks with other users
+- Comment on tasks
+- View task details
+- Paginate tasks
+- Search tasks by task title or description
+- Filter tasks by status and deadline
 
-## React Compiler
+## Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+To install and run the project, follow these steps:
 
-## Expanding the ESLint configuration
+1. Clone the repository to your local machine.
+2. Run `npm install` to install the dependencies.
+3. Run `npm start` to start the development server.
+4. Open your web browser and navigate to `http://localhost:3000` to view the application.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Deployment
+
+To deploy the project to a production environment, follow these steps:
+
+1. Run `npm run build` to build the application.
+2. Run `npm run deploy` to deploy the application to a production environment.
+
+## Contributing
+
+Contributions are welcome! If you would like to contribute to the project, please follow these steps:
+
+1. Fork the repository to your own GitHub account.
+2. Create a new branch for your changes.
+3. Make your changes and commit them to your branch.
+4. Create a pull request to merge your changes into the main branch.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more information.
