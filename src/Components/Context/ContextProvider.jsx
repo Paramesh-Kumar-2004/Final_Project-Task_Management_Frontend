@@ -23,21 +23,6 @@ const ContextProvider = ({ children }) => {
     const [page, setPage] = useState(1);
 
 
-    const fetchUsers = async () => {
-        try {
-            const response = await API.get("/auth/getusers")
-            setUsers(response.data.users)
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        fetchUsers()
-    }, [taskDetail, task])
-
-
     return (
         <Store.Provider value={{
             isLoading, setIsLoading,
