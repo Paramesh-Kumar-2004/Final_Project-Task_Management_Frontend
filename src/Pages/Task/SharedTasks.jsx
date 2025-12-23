@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import Loader from '../../Components/Loader'
 import * as changecase from "change-case"
 import dayjs from 'dayjs'
-import { Store } from '../../Components/Context/ContextProvider'
+import { Store } from '../../Components/Context/Store'
 
 
 

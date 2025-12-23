@@ -9,7 +9,7 @@ import Loader from '../../Components/Loader'
 import AddComment from '../../Components/AddComment'
 import ShareTheTask from '../../Components/ShareTheTask'
 import SharedTasks from '../Task/SharedTasks'
-import { Store } from '../../Components/Context/ContextProvider'
+import { Store } from '../../Components/Context/Store'
 
 
 

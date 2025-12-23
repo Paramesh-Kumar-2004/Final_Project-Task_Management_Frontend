@@ -5,7 +5,7 @@ import * as changecase from "change-case"
 import { API } from "../API/api";
 import { toast } from "react-toastify";
 import Loader from "./Loader";
-import { Store } from "./Context/ContextProvider";
+import { Store } from "./Context/Store";
 
 
 

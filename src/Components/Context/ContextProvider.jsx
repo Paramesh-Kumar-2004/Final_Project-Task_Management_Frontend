@@ -1,9 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { API } from '../../API/api';
+import { Store } from './Store';
 
-
-export const Store = createContext()
 
 
 const ContextProvider = ({ children }) => {
@@ -22,7 +21,6 @@ const ContextProvider = ({ children }) => {
     const [priority, setPriority] = useState("");
     const [paginate, setPaginate] = useState(1);
     const [page, setPage] = useState(1);
-
 
 
     const fetchUsers = async () => {
