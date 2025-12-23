@@ -4,12 +4,13 @@ import { toast } from 'react-toastify'
 import * as changecase from "change-case"
 import dayjs from 'dayjs'
 import Sidebar from '../../Components/Sidebar'
-import { Store } from '../../Components/ContextProvider'
 import { API } from '../../API/api'
 import Loader from '../../Components/Loader'
 import AddComment from '../../Components/AddComment'
 import ShareTheTask from '../../Components/ShareTheTask'
 import SharedTasks from '../Task/SharedTasks'
+import { Store } from '../../Components/Context/ContextProvider'
+
 
 
 

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
-import { Store } from './ContextProvider'
 import { useNavigate } from 'react-router-dom'
+import { Store } from './Context/ContextProvider'
 
 
 

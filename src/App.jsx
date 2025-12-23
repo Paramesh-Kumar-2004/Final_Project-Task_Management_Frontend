@@ -2,7 +2,7 @@ import React from 'react'
 import { HashRouter, BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
-import ContextProvider from './Components/ContextProvider'
+import ContextProvider from './Components/Context/ContextProvider'
 import CreateTasks from './Pages/Task/CreateTasks'
 import EditTask from './Pages/Task/EditTask'
 import Tasks from './Pages/Task/Tasks'

@@ -2,10 +2,10 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import * as changecase from "change-case"
-import { Store } from "./ContextProvider";
 import { API } from "../API/api";
 import { toast } from "react-toastify";
 import Loader from "./Loader";
+import { Store } from "./Context/ContextProvider";
 
 
 

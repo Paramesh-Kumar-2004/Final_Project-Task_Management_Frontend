@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { toast } from 'react-toastify'
 import Car1 from "../../assets/Car_Images_1.jpg"
-import { Store } from '../../Components/ContextProvider'
 import { API } from "../../API/api"
+import { Store } from '../../Components/Context/ContextProvider'
 
 
 
