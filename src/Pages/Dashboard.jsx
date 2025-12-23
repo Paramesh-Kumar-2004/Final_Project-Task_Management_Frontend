@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 const Dashboard = () => {
 
     const [report, setReport] = useState(null);
-    const { taskDetail, task, setUsers } = useContext(Store)
+    const { taskDetail, task, setUsers, isLoading, setIsLoading } = useContext(Store)
 
     useEffect(() => {
         getReport();
@@ -21,6 +21,7 @@ const Dashboard = () => {
 
     const getReport = async () => {
         try {
+            setIsLoading(true)
             const res = await API.get("task/dashboard/getreport");
             setReport(res.data.data);
         } catch (error) {
@@ -29,6 +30,8 @@ const Dashboard = () => {
                 position: "top-center",
                 autoClose: 2000
             })
+        } finally {
+            setIsLoading(false)
         }
     };
 

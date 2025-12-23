@@ -49,7 +49,7 @@ const BarChart = ({ total, completed, upcoming }) => {
                     <Bar data={data} options={options} />
                 </div>
             ) : (
-                <h1 className='text-sky-400 font-bold text-3xl text-center m-3'>The Data Is Empty</h1>
+                <h1 className='text-sky-400 font-bold text-xl text-center m-3'>No Reports Available</h1>
             )}
         </div>
     );
