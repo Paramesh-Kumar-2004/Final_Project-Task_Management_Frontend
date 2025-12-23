@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 const Dashboard = () => {
 
     const [report, setReport] = useState(null);
-    const { taskDetail, task } = useContext(Store)
+    const { taskDetail, task, setUsers } = useContext(Store)
 
     useEffect(() => {
         getReport();

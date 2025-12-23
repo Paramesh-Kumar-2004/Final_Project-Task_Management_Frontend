@@ -11,9 +11,9 @@ const Register = () => {
     const [viewPassword, setViewPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [userData, setUserData] = useState({
-        userName: "VP",
-        email: "vp@gmail.com",
-        password: "2004"
+        userName: "",
+        email: "",
+        password: ""
     })
 
     const HandleOnChange = async (e) => {
