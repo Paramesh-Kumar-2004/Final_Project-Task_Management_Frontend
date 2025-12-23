@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
-import { API } from '../API/api';
+import { API } from '../../API/api';
 
 
 export const Store = createContext()
