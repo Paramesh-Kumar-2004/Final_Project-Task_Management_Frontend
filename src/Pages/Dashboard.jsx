@@ -41,7 +41,6 @@ const Dashboard = () => {
             setUsers(response.data.users)
 
         } catch (error) {
-            console.log(error)
             toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
                 autoClose: 2000
