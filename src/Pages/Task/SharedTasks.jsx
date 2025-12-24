@@ -38,11 +38,11 @@ const SharedTasks = () => {
         }
     }
 
-    if (isLoading) {
-        return (
-            <Loader />
-        )
-    }
+    // if (isLoading) {
+    //     return (
+    //         <Loader />
+    //     )
+    // }
 
     return (
         <>
@@ -107,15 +107,23 @@ const SharedTasks = () => {
                                         </tr>
                                     )
                                 })
+
                             ) : (
                                 <tr>
-                                    <td
-                                        colSpan={7}
-                                        className="py-4 font-extrabold text-sky-500 bg-[#0f4c7546] border-2 border-red-900 text-center transition-transform duration-300 ease-in-out"
-                                    >No Shared Tasks</td>
+                                    {isLoading ?
+                                        <td colSpan={7}>
+                                            <Loader />
+                                        </td>
+                                        : (
+                                            <td
+                                                colSpan={7}
+                                                className="py-4 font-extrabold text-sky-500 bg-[#0f4c7546] border-2 border-red-900 text-center transition-transform duration-300 ease-in-out"
+                                            >No Shared Tasks</td>
+                                        )}
                                 </tr>
                             )}
                         </tbody>
+
                     </table>
 
                 </div>
