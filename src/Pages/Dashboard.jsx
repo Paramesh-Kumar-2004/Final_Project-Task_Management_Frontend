@@ -41,10 +41,10 @@ const Dashboard = () => {
             setUsers(response.data.users)
 
         } catch (error) {
-            toast.error(error.response?.data?.message || error.message, {
-                position: "top-center",
-                autoClose: 2000
-            })
+            // toast.error(error.response?.data?.message || error.message, {
+            //     position: "top-center",
+            //     autoClose: 2000
+            // })
         }
     }
 
