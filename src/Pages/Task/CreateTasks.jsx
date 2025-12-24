@@ -138,7 +138,7 @@ const CreateTasks = () => {
                             >
                                 <option value="work" className="text-lg bg-[#1B262C]">Work</option>
                                 <option value="personal" className="text-lg bg-[#1B262C]">Personal</option>
-                                <option value="prjects" className="text-lg bg-[#1B262C]">Prjects</option>
+                                <option value="projects" className="text-lg bg-[#1B262C]">Projects</option>
                             </select>
                         </div>
 
