@@ -28,12 +28,14 @@ const TaskDetails = () => {
         taskDetail, setTaskDetail,
         sharedWithTask, setSharedWithTask,
         comments, setComments,
-        refetch, setRefetch
+        refetch, setRefetch,
+        fetchUsers
     } = useContext(Store)
 
     useEffect(() => {
         fetchSingleTask()
         fetchComments()
+        fetchUsers()
     }, [refetch])
 
 
