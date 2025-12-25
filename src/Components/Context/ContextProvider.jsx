@@ -25,17 +25,16 @@ const ContextProvider = ({ children }) => {
 
     const fetchUsers = async () => {
         try {
-            // setIsLoading(true)
+            setIsLoading(true)
             const response = await API.get("/auth/getusers")
             setUsers(response.data.users)
-
         } catch (error) {
             toast.error(error.response?.data?.message || error.message, {
                 position: "top-center",
                 autoClose: 2000
             })
         } finally {
-            // setIsLoading(false)
+            setIsLoading(false)
         }
     }
 
