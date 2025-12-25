@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { API } from '../../API/api';
 import { Store } from './Store';
-import { FlatESLint } from 'eslint/use-at-your-own-risk';
 
 
 
