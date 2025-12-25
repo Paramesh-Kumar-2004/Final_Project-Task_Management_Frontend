@@ -11,7 +11,7 @@ const CreateTasks = () => {
 
     const navigate = useNavigate()
     const fileInputRef = useRef(null)
-    const { task, setTask, users, fetchUsers } = useContext(Store)
+    const { users, fetchUsers } = useContext(Store)
 
     useEffect(() => {
         fetchUsers()
