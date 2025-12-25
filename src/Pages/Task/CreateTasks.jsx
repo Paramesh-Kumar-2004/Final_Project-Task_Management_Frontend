@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../Components/Sidebar';
 import { API } from '../../API/api';
@@ -22,6 +22,24 @@ const CreateTasks = () => {
         assignedTo: "",
         file: null
     });
+
+
+    const fetchUsers = async () => {
+        try {
+            const response = await API.get("/auth/getusers")
+            setUsers(response.data.users)
+
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        }
+    }
+
+    useEffect(() => {
+        fetchUsers()
+    }, [])
 
     function HandleChange(e) {
         const { name, value } = e.target;
