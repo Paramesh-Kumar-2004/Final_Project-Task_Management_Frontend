@@ -13,7 +13,6 @@ import { Store } from '../../Components/Context/Store'
 
 
 
-
 const TaskDetails = () => {
 
     const navigate = useNavigate()
@@ -171,7 +170,17 @@ const TaskDetails = () => {
                                 </p>
 
                                 <p className="text-white font-semibold mb-5 leading-relaxed">
-                                    File : {taskDetail.file ? taskDetail.file : "Not Attached"}
+                                    File : {taskDetail.fileUrl ? (
+                                        <a
+                                            href={taskDetail.fileUrl}
+                                            target='_b'
+                                            className={`${taskDetail.fileUrl && "text-green-500"}`}
+                                        >
+                                            View Document
+                                        </a>
+                                    ) : (
+                                        "Not Attached"
+                                    )}
                                 </p>
 
                                 <p className="text-white font-semibold mb-5 leading-relaxed">

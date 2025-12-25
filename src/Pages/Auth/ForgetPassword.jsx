@@ -22,7 +22,7 @@ const ForgetPassword = () => {
                 draggable: true,
                 theme: "dark",
             });
-            console.log("Password reset link sent:", response.data);
+            // console.log("Password reset link sent:", response.data);
         } catch (error) {
             console.error(error.response?.data?.message || "Error sending password reset link:", error);
             toast.error(error.response?.data?.message || "Failed to send password reset link. Please try again.", {
