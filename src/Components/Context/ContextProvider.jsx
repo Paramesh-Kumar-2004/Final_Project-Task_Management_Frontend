@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { API } from '../../API/api';
 import { Store } from './Store';
+import { FlatESLint } from 'eslint/use-at-your-own-risk';
 
 
 
@@ -22,6 +23,21 @@ const ContextProvider = ({ children }) => {
     const [paginate, setPaginate] = useState(1);
     const [page, setPage] = useState(1);
 
+    const fetchUsers = async () => {
+        try {
+            // setIsLoading(true)
+            const response = await API.get("/auth/getusers")
+            setUsers(response.data.users)
+
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        } finally {
+            // setIsLoading(false)
+        }
+    }
 
     return (
         <Store.Provider value={{
@@ -38,6 +54,7 @@ const ContextProvider = ({ children }) => {
             paginate, setPaginate,
             priority, setPriority,
             page, setPage,
+            // fetchUsers
         }}>
             {children}
         </Store.Provider>
