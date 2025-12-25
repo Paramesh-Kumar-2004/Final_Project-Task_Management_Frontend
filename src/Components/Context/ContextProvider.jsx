@@ -54,7 +54,7 @@ const ContextProvider = ({ children }) => {
             paginate, setPaginate,
             priority, setPriority,
             page, setPage,
-            // fetchUsers
+            fetchUsers
         }}>
             {children}
         </Store.Provider>
