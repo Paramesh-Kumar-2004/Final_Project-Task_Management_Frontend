@@ -28,7 +28,8 @@ const TaskDetails = () => {
         taskDetail, setTaskDetail,
         sharedWithTask, setSharedWithTask,
         comments, setComments,
-        refetch, setRefetch
+        refetch, setRefetch,
+        setUsers
     } = useContext(Store)
 
     useEffect(() => {
@@ -36,6 +37,23 @@ const TaskDetails = () => {
         fetchComments()
     }, [refetch])
 
+
+    const fetchUsers = async () => {
+        try {
+            const response = await API.get("/auth/getusers")
+            setUsers(response.data.users)
+
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message, {
+                position: "top-center",
+                autoClose: 2000
+            })
+        }
+    }
+
+    useEffect(() => {
+        fetchUsers()
+    }, [])
 
     const fetchSingleTask = async () => {
         try {
