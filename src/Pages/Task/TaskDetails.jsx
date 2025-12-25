@@ -8,7 +8,6 @@ import { API } from '../../API/api'
 import Loader from '../../Components/Loader'
 import AddComment from '../../Components/AddComment'
 import ShareTheTask from '../../Components/ShareTheTask'
-import SharedTasks from '../Task/SharedTasks'
 import { Store } from '../../Components/Context/Store'
 
 
@@ -24,7 +23,6 @@ const TaskDetails = () => {
 
     const {
         isLoading, setIsLoading,
-        task, setTask,
         taskDetail, setTaskDetail,
         sharedWithTask, setSharedWithTask,
         comments, setComments,
