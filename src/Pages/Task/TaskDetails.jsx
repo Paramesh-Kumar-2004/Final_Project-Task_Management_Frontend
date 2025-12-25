@@ -170,6 +170,17 @@ const TaskDetails = () => {
                                 </p>
 
                                 <p className="text-white font-semibold mb-5 leading-relaxed">
+                                    Deadline : {dayjs(taskDetail.deadline).format("DD:MM:YYYY")}
+                                </p>
+
+                                <p className="text-white font-semibold mb-5 leading-relaxed">
+                                    Priority :
+                                    <span className={`${taskDetail.priority == "medium" ? "text-cyan-500" : taskDetail.priority == "high" ? "text-red-600" : "text-yellow-300"}`}>
+                                        {" " + changecase.capitalCase(taskDetail.priority)}
+                                    </span>
+                                </p>
+
+                                <p className="text-white font-semibold mb-5 leading-relaxed">
                                     File : {taskDetail.fileUrl ? (
                                         <a
                                             href={taskDetail.fileUrl}
@@ -181,17 +192,6 @@ const TaskDetails = () => {
                                     ) : (
                                         "Not Attached"
                                     )}
-                                </p>
-
-                                <p className="text-white font-semibold mb-5 leading-relaxed">
-                                    Priority :
-                                    <span className={`${taskDetail.priority == "medium" ? "text-cyan-500" : taskDetail.priority == "high" ? "text-red-600" : "text-yellow-300"}`}>
-                                        {" " + changecase.capitalCase(taskDetail.priority)}
-                                    </span>
-                                </p>
-
-                                <p className="text-white font-semibold mb-5 leading-relaxed">
-                                    Deadline : {dayjs(taskDetail.deadline).format("DD:MM:YYYY")}
                                 </p>
 
                                 {hasEditPermission && (
