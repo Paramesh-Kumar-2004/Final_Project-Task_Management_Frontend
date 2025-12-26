@@ -35,8 +35,6 @@ const TaskDetails = () => {
         fetchComments()
         fetchUsers()
     }, [refetch])
-
-
     const fetchSingleTask = async () => {
         try {
             setIsLoading(true)
@@ -58,7 +56,6 @@ const TaskDetails = () => {
             setIsLoading(false)
         }
     }
-
     const fetchComments = async () => {
         try {
             const response = await API.get(`/comment/getcomments/${taskid}`)
@@ -89,7 +86,6 @@ const TaskDetails = () => {
             fetchComments(taskid)
         }
     }
-
     const HandleCollaborationDelete = async (collaborationId) => {
         try {
             const response = await API.delete(`/collobaration/deletecollaboration/${collaborationId}`)
@@ -106,7 +102,6 @@ const TaskDetails = () => {
             fetchSingleTask()
         }
     }
-
     const HandleCollaborationUpdateAccess = async (collaborationId, control) => {
         try {
             control = control == "edit" ? "read" : "edit"
@@ -131,12 +126,6 @@ const TaskDetails = () => {
     });
 
 
-    if (isLoading) {
-        return (
-            <Loader />
-        )
-    }
-
     return (
         <div className='flex'>
             <Sidebar />
@@ -147,6 +136,9 @@ const TaskDetails = () => {
                     <div className='py-6 pl-0'>
                         <h1 className='text-sky-50 font-bold text-3xl text-center'>Task Details</h1>
                     </div>
+                    {isLoading && (
+                        <Loader loadingMessage='Loading Datas' />
+                    )}
                     <div className="flex flex-wrap gap-3 text-[#BBE1FA] justify-evenly items-center font-[Poppins,sans-serif] pt-4 pr-3">
                         {taskDetail.length !== 0 ? (
                             <div
