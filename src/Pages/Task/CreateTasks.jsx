@@ -207,7 +207,7 @@ const CreateTasks = () => {
                                 }
                                 onChange={(e) => HandleChange(e)}
                                 required
-                                className="w-full p-2 rounded-md border-2 border-sky-500 text-white text-lg outline-none"
+                                className="w-full p-2 rounded-md border-2 border-sky-500 text-white text-lg outline-none cursor-pointer"
                             />
                         </div>
                     </div>
@@ -224,7 +224,7 @@ const CreateTasks = () => {
                             name='assignedTo'
                             value={taskData.assignedTo}
                             onChange={(e) => HandleChange(e)}
-                            className="w-full p-2 rounded-md border-2 border-sky-500 text-white text-lg outline-none"
+                            className="w-full p-2 rounded-md border-2 border-sky-500 text-white text-lg outline-none cursor-pointer"
                         >
                             <option value="" disabled className='text-lg bg-[#1B262C] border-2'>
                                 Select Email
