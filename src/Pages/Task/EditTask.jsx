@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../../Components/Sidebar";
 import { toast } from "react-toastify";
 import { API } from "../../API/api";
+import { Store } from "../../Components/Context/Store";
+import Loader from "../../Components/Loader";
 
 
 
@@ -10,6 +12,8 @@ const EditTask = () => {
 
     const navigate = useNavigate();
     const { taskId } = useParams()
+
+    const { isLoading, setIsLoading } = useContext(Store)
 
     const [taskData, setTaskData] = useState({
         title: "",
@@ -24,6 +28,7 @@ const EditTask = () => {
     }, [])
 
     const fetchById = async () => {
+        setIsLoading(true)
         try {
             const response = await API.get(`/task/getsingletask/${taskId}`)
             setTaskData(response.data.task)
@@ -33,6 +38,8 @@ const EditTask = () => {
                 position: "top-center",
                 autoClose: 2000
             })
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -46,6 +53,7 @@ const EditTask = () => {
 
     async function HandleSubmit(e) {
         e.preventDefault();
+        setIsLoading(true)
         try {
             const response = await API.put(`/task/updatetask/${taskId}`, { taskData })
             toast(response.data.message, {
@@ -59,6 +67,8 @@ const EditTask = () => {
                 position: "top-center",
                 autoClose: 2000
             })
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -159,10 +169,11 @@ const EditTask = () => {
 
                     <div className="flex gap-6">
                         <button
+                            disabled={isLoading}
                             type="submit"
-                            className="w-full bg-green-600 text-white font-semibold py-2 rounded-md hover:bg-green-700 transition-all duration-300 cursor-pointer"
+                            className={`w-full text-white font-semibold py-2 rounded-md hover:bg-green-700 transition-all duration-300 ${isLoading ? "opacity-50 cursor-not-allowed bg-gray-500" : "bg-green-600 cursor-pointer"}`}
                         >
-                            Update Task
+                            {isLoading ? "Loading..." : "Update Task"}
                         </button>
 
                         <button
