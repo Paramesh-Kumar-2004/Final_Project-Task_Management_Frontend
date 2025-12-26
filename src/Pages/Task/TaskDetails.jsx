@@ -35,6 +35,7 @@ const TaskDetails = () => {
         fetchComments()
         fetchUsers()
     }, [refetch])
+
     const fetchSingleTask = async () => {
         try {
             setIsLoading(true)
@@ -56,6 +57,7 @@ const TaskDetails = () => {
             setIsLoading(false)
         }
     }
+
     const fetchComments = async () => {
         try {
             const response = await API.get(`/comment/getcomments/${taskid}`)
