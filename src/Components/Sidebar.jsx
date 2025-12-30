@@ -9,16 +9,9 @@ const Sidebar = () => {
     const navigate = useNavigate()
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth") || false)
 
-    // useEffect(() => {
-    //     if (!isAuth) {
-    //         navigate("/login")
-    //     }
-    // }, [])
-
     const HandleLogout = async () => {
         try {
             localStorage.clear()
-            toast.success("Logout Success")
             navigate("/login")
         } catch (error) {
             console.log(error)

@@ -60,7 +60,7 @@ const EditTask = () => {
                 position: "top-center",
                 autoClose: 2000
             })
-            navigate("/tasks")
+            navigate(-1)
 
         } catch (error) {
             toast.error(error.response?.data?.message || error.message, {

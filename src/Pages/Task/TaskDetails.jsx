@@ -20,6 +20,7 @@ const TaskDetails = () => {
     const [createdBy, setCreatedBy] = useState(null)
     const [showAddComment, setShowAddComment] = useState(false);
     const [showAddCollab, setShowAddCollab] = useState(false);
+    const [assignUserId, setAssignUserId] = useState(null)
 
     const {
         isLoading, setIsLoading,
@@ -43,8 +44,9 @@ const TaskDetails = () => {
             setTaskDetail(response.data.task)
             setSharedWithTask(response.data.task.sharedWith);
             setCreatedBy(response.data.task.createdBy._id)
+            setAssignUserId(response.data.task.assignedTo)
 
-            // console.log(response.data.task.createdBy._id, userId)
+            // console.log(response.data.task.assignedTo)
 
         } catch (error) {
             console.log(error)
@@ -123,9 +125,14 @@ const TaskDetails = () => {
         }
     }
 
-    const hasEditPermission = sharedWithTask?.some(item => {
-        return (item.user?._id === userId && item.permission === "edit") || createdBy === userId
-    });
+    const hasEditPermission =
+        assignUserId === userId ||
+        createdBy === userId ||
+        sharedWithTask?.some(item =>
+            item.user?._id === userId && item.permission === "edit"
+        );
+
+    console.log(hasEditPermission)
 
 
     return (
