@@ -90,9 +90,10 @@ const TaskDetails = () => {
             fetchComments(taskid)
         }
     }
-    const HandleCollaborationDelete = async (collaborationId) => {
+
+    const HandleRemoveSharedTask = async (item) => {
         try {
-            const response = await API.delete(`/collobaration/deletecollaboration/${collaborationId}`)
+            const response = await API.delete(`/task/removeshareduser/${taskid}/${item.user._id}`)
             toast.info(response.data.message, {
                 position: "top-center",
                 autoClose: 2000
@@ -106,7 +107,9 @@ const TaskDetails = () => {
             fetchSingleTask()
         }
     }
-    const HandleCollaborationUpdateAccess = async (collaborationId, control) => {
+
+
+    const HandleSharedTaskUpdateAccess = async (collaborationId, control) => {
         try {
             control = control == "edit" ? "read" : "edit"
             const response = await API.patch(`/collobaration/updatecollaborationcontrol/${collaborationId}`, { control })
@@ -132,7 +135,7 @@ const TaskDetails = () => {
             item.user?._id === userId && item.permission === "edit"
         );
 
-    console.log(hasEditPermission)
+    // console.log(hasEditPermission)
 
 
     return (
@@ -250,14 +253,14 @@ const TaskDetails = () => {
 
                                             {userId == createdBy && (
                                                 <div className='flex flex-wrap justify-between'>
-                                                    <button
-                                                        onClick={() => HandleCollaborationUpdateAccess(item._id, item.permission)}
+                                                    {/* <button
+                                                        onClick={() => HandleSharedTaskUpdateAccess(item._id, item.permission)}
                                                         className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-green-600 text-white hover:border-2 hover:border-green-800"
                                                     >
                                                         Update To {item.permission == "edit" ? "Read" : "Edit"}
-                                                    </button>
+                                                    </button> */}
                                                     <button
-                                                        onClick={() => HandleCollaborationDelete(item._id)}
+                                                        onClick={() => HandleRemoveSharedTask(item)}
                                                         className="px-4 py-1.5 font-semibold rounded-md transition-colors duration-300 cursor-pointer bg-red-600 text-white hover:border-2 hover:border-red-800"
                                                     >
                                                         Delete
