@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import Car3 from "../../assets/Car_Images_3.jpg"
 import { API } from '../../API/api'
 
@@ -8,6 +8,7 @@ import { API } from '../../API/api'
 
 const Register = () => {
 
+    const navigate = useNavigate()
     const [viewPassword, setViewPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [userData, setUserData] = useState({
@@ -34,6 +35,8 @@ const Register = () => {
                 position: "top-center",
                 autoClose: 2000,
             });
+            navigate("/login")
+
         } catch (error) {
             toast.error(error.response?.data?.message || "Something went wrong!", {
                 position: "top-center",
