@@ -12,8 +12,6 @@ const ResetPassword = () => {
     const [resetPassword, setResetPassword] = useState("")
     const [isLoading, setIsLoading] = useState(false);
 
-
-
     const Onchange = async (e) => {
         setResetPassword(e.target.value)
     }
